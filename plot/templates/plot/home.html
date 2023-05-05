@@ -5,16 +5,18 @@
     <title>Plot Stonks!</title>
 </head>
 <body>
+<p>You can select a Stonk or enter a custom Stonk symbol:</p>
 <div>
-    <form action="" method="post">
+    <form action="../plot.py" method="post">        <!--todo add action url for processing -->
         <label for="stonk-select">Choose Your Stonks:</label>
 
-        <select name="pets" id="stonk-select">  <!-- attributes to consider multiple  size="11"-->
+        <select name="pets" id="stonk-select">
             <option value="">--Please choose a Stonk!--</option>
             <option value="CADUSD=X">USD/CAD</option>
             <option value="X.TO">TMX Group Limited</option>
             <option value="^DJI">Dow Jones Industrial Average</option>
             <option value=NQ=F">Nasdaq 100</option>
+             <option value="AMZN">Amazon</option>
             <option value="CL=F">Crude Oil</option>
             <option value="GC=F">Gold</option>
             <option value="^GSPTSE">S&P/TSX Composite index </option>
@@ -24,7 +26,7 @@
         </select>
 
         <label for="stonk-custom"></label>
-            <input type="text" id="stonk-custom" name="stonk-custom" placeholder="^DJI">
+            <input type="text" id="stonk-custom" name="stonk-custom" placeholder="Symbol: ^DJI">
         <button type="submit">Select</button>
     </form>
 </div>
