@@ -7,7 +7,7 @@
 <body>
 <p>You can select a Stonk or enter a custom Stonk symbol:</p>
 <div>
-    <form action="../plot.py" method="post">        <!--todo add action url for processing -->
+    <form action="plot/urls.py" method="get">        <!--todo add action url for processing -->
         <label for="stonk-select">Choose Your Stonks:</label>
 
         <select name="pets" id="stonk-select">
@@ -34,6 +34,9 @@
     <ul>
         <li>placeholder for list to collect and submit to generate a chart</li>
     </ul>
+</div>
+<div>
+    <label for=""><a href="./about.html">About</a></label>
 </div>
 </body>
 </html>

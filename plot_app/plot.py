@@ -1,7 +1,7 @@
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import yfinance as yf
-
+import symbol_validator as val
 
 period = "1mo"  # Valid periods are: 1d, 5d, 1mo, 3mo, 6mo, 1y, 2y, 5y, 10y, ytd, max:
 
@@ -14,7 +14,7 @@ dow = dow.reset_index()  # reset_index returns a new dataframe
 us_cad = yf.Ticker('CADUSD=X').history(period)
 us_cad = us_cad.reset_index()
 
-# # Plot a candle stick plot with plotly
+# # Plot a candle stick plot_app with plotly
 fig = make_subplots(rows=1, cols=2)
 fig.add_trace(
     go.Candlestick(x=dow['Date'],
