@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Plot Stonks!</title>
+</head>
+<body>
+<div>
+    <form action="" method="post">
+        <label for="stonk-select">Choose Your Stonks:</label>
+
+        <select name="pets" id="stonk-select">  <!-- attributes to consider multiple  size="11"-->
+            <option value="">--Please choose a Stonk!--</option>
+            <option value="CADUSD=X">USD/CAD</option>
+            <option value="X.TO">TMX Group Limited</option>
+            <option value="^DJI">Dow Jones Industrial Average</option>
+            <option value=NQ=F">Nasdaq 100</option>
+            <option value="CL=F">Crude Oil</option>
+            <option value="GC=F">Gold</option>
+            <option value="^GSPTSE">S&P/TSX Composite index </option>
+            <option value="^GSPC">S&P 500</option>
+            <option value="^VIX">CBOE Volatility Index</option>
+            <option value="CM.TO">Canadian Imperial Bank of Commerce</option>
+        </select>
+
+        <label for="stonk-custom"></label>
+            <input type="text" id="stonk-custom" name="stonk-custom" placeholder="^DJI">
+        <button type="submit">Select</button>
+    </form>
+</div>
+<div>
+    <ul>
+        <li>placeholder for list to collect and submit to generate a chart</li>
+    </ul>
+</div>
+</body>
+</html>
