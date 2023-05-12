@@ -1,17 +1,20 @@
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import yfinance as yf
-import symbol_validator as val
 
-period = "1mo"  # Valid periods are: 1d, 5d, 1mo, 3mo, 6mo, 1y, 2y, 5y, 10y, ytd, max:
 
-amzn = yf.Ticker("AMZN").history(period)
-amzn = amzn.reset_index()
+default_period = "1mo"  # Valid periods are: 1d, 5d, 1mo, 3mo, 6mo, 1y, 2y, 5y, 10y, ytd, max:
 
-dow = yf.Ticker("^DJI").history(period)
+user_sym = _POST['stonk-select']
+user_period = _POST['period']: ?  default_period # todo how do I do null coalescing in python.
+
+user_stonk_data = yf.Ticker(user_sym).history(default_period)
+stonk_data = user_stonk_data.reset_index()
+
+dow = yf.Ticker("^DJI").history(default_period)
 dow = dow.reset_index()  # reset_index returns a new dataframe
 
-us_cad = yf.Ticker('CADUSD=X').history(period)
+us_cad = yf.Ticker('CADUSD=X').history(default_period)
 us_cad = us_cad.reset_index()
 
 # # Plot a candle stick plot_app with plotly

@@ -21,3 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('plot_app.urls')),
 ]
+
+# You should always use include() when you include other URL patterns. admin.site.urls is the only exception to this.
