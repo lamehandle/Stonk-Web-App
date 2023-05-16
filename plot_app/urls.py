@@ -9,4 +9,4 @@ urlpatterns = [
 ]
 
 #  The path() function is passed four arguments, two required: route and view, and two optional: kwargs, and name.
-#  At this point, it’s worth reviewing what these arguments are for.
+
