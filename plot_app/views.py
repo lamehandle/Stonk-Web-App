@@ -13,3 +13,7 @@ def about(request):
 
 def plot(request):
     return render(request, 'plot_app/ploy.py')
+
+
+def process_stock(request):
+    return render(request, 'plot_app/process_stock.py')
