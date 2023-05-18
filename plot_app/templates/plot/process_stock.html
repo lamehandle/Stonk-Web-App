@@ -9,6 +9,7 @@
             <table>
                 <thead>
                     <tr>
+                        <th colspan="3">Symbol:</th>
                         <th colspan="3">Date: </th>
                         <th colspan="3">Open: </th>
                         <th colspan="3">High: </th>
@@ -21,6 +22,7 @@
                 </thead>
                 <tbody>
                     <tr>
+                        <td>Symbol {% process_stock.stonk-select | process_stock.stonk-custom %}</td>
                         <td>Date {% process_stock.date %}</td>
                         <td>Open {% process_stock.open %}</td>
                         <td>High {% process_stock.high %}</td>

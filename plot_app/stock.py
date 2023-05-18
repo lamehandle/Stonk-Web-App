@@ -1,7 +1,7 @@
 import plotly.graph_objects as go
 import yfinance as yf
 
-
+# todo I think I need to turn this into a Django model
 class Stock:
     symbol = ''  # string representation of stock ticker symbol
     data = ''  # A Ticker object using the symbol passed.

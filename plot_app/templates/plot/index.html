@@ -7,10 +7,11 @@
 <body>
 <p>You can select a Stonk or enter a custom Stonk symbol:</p>
 <div>
-    <form action="plot/process_stock.html" method="POST">        <!--todo complete wiring up "/process_stock.py" for processing -->
+    <form action="plot_app/process_stock.py" method="POST" class="stonk-select">        <!--todo complete wiring up "/process_stock.py" for processing -->
+        {% csrf_token %} <!-- this token prevents cross site errors -->
         <label for="stonk-select">Choose Your Stonks:</label>
 
-        <select name="pets" id="stonk-select">
+        <select name="stonk-select" id="stonk-select">
             <option value="">--Please choose a Stonk!--</option>
             <option value="CADUSD=X">USD/CAD</option>
             <option value="X.TO">TMX Group Limited</option>
@@ -28,11 +29,17 @@
         <label for="stonk-custom"></label>
             <input type="text" id="stonk-custom" name="stonk-custom" placeholder="Symbol: ^DJI">
         <button type="submit">Select</button>
+        {% stock %}
     </form>
 </div>
 <div>
     <ul>
-        <li>placeholder for list to collect and submit to generate a chart</li> <!--todo complete generating stock name label before submitting js I think -->
+        {% for item in stock: %}
+        <li> {{ item.symbol }} </li> <!--todo complete generating stock name label before submitting-->
+        <li> {{ item.period }} </li>
+        <li> {% item.start %} </li>
+        <li> {% item.end %} </li>
+        {% end %}
     </ul>
 </div>
 <div>

@@ -1,15 +1,41 @@
+from datetime import datetime
 from django.db import models
+import yfinance as yf
 
 
 # Create your models here.
 class stock(models.Model):
-    symbol = models.CharField(max_length=10)
+    symbol = models.CharField(max_length=10, initial="CADUSD=X")
     period = models.CharField(max_length=5)   # 1d, 5d, 1mo, 3mo, 6mo, 1y, 2y, 5y, 10y, ytd, max
-    start = models.DateTimeField()
-    end = models.DateTimeField()
+    start = models.DateTimeField(required=False, initial=datetime.date.today)
+    end = models.DateTimeField(required=False)
+    stock_symbols = [
+        ('CADUSD=X', 'USD / CAD'),
+        ('XIU.TO', 'iShares S&P/TSX 60 Index ETF'),
+        ('GC=F', 'Gold Futures'),
+        ('^GSPTSE', 'S&P/TSX Composite index'),
+        ('^GSPC', '	S&P 500'),
+        ('^DJI', 'Dow Jones Industrial Average'),
+        ('^IXIC', 'NASDAQ Composite'),
+        ('^NYA', 'NYSE COMPOSITE (DJ)'),
+        ('^XAX', 'NYSE AMEX COMPOSITE INDEX'),
+        ('^RUT', 'Russell 2000'),
+        ('^VIX', '	CBOE Volatility Index'),
+        ('^FTSE', 'FTSE 100'),
+        ('^GDAXI', 'DAX PERFORMANCE-INDEX'),
+        ('^FCHI', 'CAC 40'),
+    ]
+    stonk_select = models.Choices(stock_symbols)  # takes lists of tuples as value/label pairs.
+    history = ''
 
     def __str__(self):
         return f"{self.symbol} {self.period} {self.start}{self.end}"
+
+    def stock_history(self):
+        if self.period != '':
+            self.history = yf.Ticker(self.symbol).history(self.period)
+        else:
+            self.history = yf.Ticker(self.symbol).history(self.start, self.end)
 
 
 class user(models.Model):
