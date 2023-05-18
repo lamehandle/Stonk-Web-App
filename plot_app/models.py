@@ -33,9 +33,9 @@ class stock(models.Model):
 
     def stock_history(self):
         if self.period != '':
-            self.history = yf.Ticker(self.symbol).history(self.period)
+            self.history = yf.Ticker(self.symbol).history(period=self.period)
         else:
-            self.history = yf.Ticker(self.symbol).history(self.start, self.end)
+            self.history = yf.Ticker(self.symbol).history(start=self.start, end=self.end)
 
 
 class user(models.Model):
