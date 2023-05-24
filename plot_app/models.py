@@ -26,7 +26,7 @@ class stock(models.Model):
         ('^FCHI', 'CAC 40'),
     ]
     stonk_select = models.Choices(stock_symbols)  # takes lists of tuples as value/label pairs.
-    history = ''
+    history = []
 
     def __str__(self):
         return f"{self.symbol} {self.period} {self.start}{self.end}"

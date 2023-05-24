@@ -6,6 +6,9 @@
 </head>
 <body>
     <div class="stonk-table">
+        <form action="">
+            {% csrf_token %}
+            {{ form }}
             <table>
                 <thead>
                     <tr>
@@ -22,18 +25,19 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Symbol {% process_stock.stonk-select | process_stock.stonk-custom %}</td>
-                        <td>Date {% process_stock.date %}</td>
-                        <td>Open {% process_stock.open %}</td>
-                        <td>High {% process_stock.high %}</td>
-                        <td>Low {% process_stock.low %}</td>
-                        <td>Close {% process_stock.close %}</td>
-                        <td>Volume {% process_stock.volume %}</td>
-                        <td>Dividends {% process_stock.dividends %}</td>
-                        <td>Splits {% process_stock.splits %}</td>
+                        <td colspan="3">Symbol {{ form.symbol.value }}</td>
+                        <td colspan="3">Date {{ form.date.value  }}</td>
+                        <td colspan="3">Open {{ form.open.value  }}</td>
+                        <td colspan="3">High {{ form.high.value  }}</td>
+                        <td colspan="3">Low {{ form.low.value  }}</td>
+                        <td colspan="3">Close {{ form.close.value  }}</td>
+                        <td colspan="3">Volume {{ form.volume.value  }}</td>
+                        <td colspan="3">Dividends {{ form.dividends.value  }}</td>
+                        <td colspan="3">Splits {{ form.splits.value  }}</td>
                     </tr>
                 </tbody>
             </table>
+        </form>
     </div>
 </body>
 </html>

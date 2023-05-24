@@ -12,7 +12,26 @@
 
     <form action="plot_app/process_stock.html" method="POST" class="stonk-select">
         {%  csrf_token %} <!-- this token prevents cross site errors -->
-        {{ stock_form }}
+        <!--todo complete wiring up "/process_stock.py" for processing -->
+        <label for="stonk-select">Choose Your Stonks:</label>
+S
+        <select name="stonk-select" id="stonk-select">
+            {% for symbol in stock_symbols: %}
+            <option value="">--Please choose a Stonk!--</option>
+            <option value="CADUSD=X">USD/CAD</option>
+            <option value="X.TO">TMX Group Limited</option>
+            <option value="^DJI">Dow Jones Industrial Average</option>
+            <option value=NQ=F">Nasdaq 100</option>
+             <option value="AMZN">Amazon</option>
+            <option value="CL=F">Crude Oil</option>
+            <option value="GC=F">Gold</option>
+            <option value="^GSPTSE">S&P/TSX Composite index </option>
+            <option value="^GSPC">S&P 500</option>
+            <option value="^VIX">CBOE Volatility Index</option>
+            <option value="CM.TO">Canadian Imperial Bank of Commerce</option>
+            {% endfor %}
+        </select>
+
         <label for="stonk-custom"></label>
             <input type="text" id="stonk-custom" name="stonk-custom" placeholder="Symbol: ^DJI">
         <button type="submit">Select</button>
