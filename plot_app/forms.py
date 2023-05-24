@@ -1,6 +1,5 @@
 from datetime import datetime
 from django import forms
-import yfinance as yf
 
 
 class stock_form(forms.Form):
