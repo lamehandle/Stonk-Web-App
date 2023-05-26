@@ -8,27 +8,23 @@
     <div>
         <p>You can select a Stonk or enter a custom Stonk symbol:</p>
     </div>
-<div>
 
-    <form action="plot_app/process_stock.html" method="POST" class="stonk-select">
-        {%  csrf_token %} <!-- this token prevents cross site errors -->
-        {{ stock_form }}
-        <label for="stonk-custom"></label>
-            <input type="text" id="stonk-custom" name="stonk-custom" placeholder="Symbol: ^DJI">
-        <button type="submit">Select</button>
-    </form>
+    <div>
 
-</div>
+        <form  action="process_stock/" method="POST">
+            {% csrf_token %}
+            {{ stock_form.stonk_select}}
+            {{ stock_form.symbol}}
+            {{ stock_form.period}}
+            {{ stock_form.start}}
+            {{ stock_form.end}}
 
-<div>
-    <ul>
-        <!--todo complete generating stock name label before submitting I think this has to do with form binding-->
-            <li> field.symbol  </li>
-            <li> field.period </li>
-            <li> field.start </li>
-            <li> field.end </li>
-    </ul>
-</div>
+            <button type="submit">Select</button>
+        </form>
+
+    </div>
+
+
 <div>
     <label for="about"><a name="about" href="./about.html">About</a></label>
 </div>

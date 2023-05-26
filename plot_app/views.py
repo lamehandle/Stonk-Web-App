@@ -1,20 +1,14 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect
 from .forms import stock_form
-import yfinance as yf
 
 
 # Create your views here.
 def index(request):
-    return render(request, 'plot/index.bak.html')  # call templates here
+    return render(request, 'plot/index.html')  # call templates here
 
 
 def about(request):
     return render(request, 'plot/about.html')
-
-
-def plot(request):
-    return render(request, 'plot_app/ploy.py')
 
 
 def process_stock_view(request):
@@ -25,29 +19,36 @@ def process_stock_view(request):
         if form.is_valid():
             form.cleaned_data()
             # process the data in form.cleaned_data as required
-            symbol = form.fields['symbol']
-            period = form.fields['period']
-            start = form.fields['start']
-            end = form.fields['end']
+            symbol = form.cleaned_data['symbol']
+            period = form.cleaned_data['period']
+            start = form.cleaned_data['start']
+            end = form.cleaned_data['end']
+            # make a dict to pass this data into the template
+            data = {
+                'symbol': symbol,
+                'period': period,
+                'start': start,
+                'end': end,
+            }
 
-            history = yf.Ticker(symbol).history(period)
-            history_flat = history.reset_index()
-            date = history_flat['Date']
-            open = history['Open']
-            high = history['High']
-            low = history['Low']
-            close = history['Close']
-            volume = history['volume']
-            dividends = history['dividends']
-            splits = history['splits']
+            # todo wire this up in the template then worry about these advances settings.
+            # history = yf.Ticker(symbol).history(period)
+            # history_flat = history.reset_index()
+            # date = history_flat['Date']
+            # open = history['Open']
+            # high = history['High']
+            # low = history['Low']
+            # close = history['Close']
+            # volume = history['volume']
+            # dividends = history['dividends']
+            # splits = history['splits']
 
             # redirect to a new URL:
-            return render(request, "process_stock.html", {'form': form})
+            return render(request, "process_stock.html", {'data': data})
+            # replace this third argument with a
+            # dictionary ('key': 'value' pairs) to create the context for the template.
 
         # if a GET (or any other method) we'll create a blank form
         else:
             form = stock_form()
-            return render(request, 'plot_app/process_stock.py', {'form': form})
-
-
-
+            return render(request, '"process_stock.html', {'form': form})
