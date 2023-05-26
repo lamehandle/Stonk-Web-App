@@ -7,8 +7,8 @@
 <body>
     <div class="stonk-table">
         <form action="">
-            {% csrf_token %}
-            {{ stock_form.data }}
+               {% csrf_token %}
+               {{ data }}
             <table>
                 <thead>
                     <tr>
@@ -24,6 +24,7 @@
                     </tr>
                 </thead>
                 <tbody>
+
                     <tr>
                         <td colspan="3">Symbol {{ data.symbol.value }}</td>
                         <td colspan="3">Date {{ data.date.value  }}</td>

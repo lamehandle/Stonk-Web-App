@@ -2,9 +2,10 @@ from django.contrib import admin
 from django.urls import path
 from . import views
 
+app_name = 'plot'
 urlpatterns = [
-    path('', views.index, name='plot_app-home'),
-    path('about', views.about, name='plots-about'),
+    path('', views.index, name='plot-home'),
+    path('about/', views.about, name='plots-about'),
     path('process_stock/', views.process_stock_view, name='plot-process-form'),
 ]
 

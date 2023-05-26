@@ -19,9 +19,9 @@ class stock_form(forms.Form):
         ('^GDAXI', 'DAX PERFORMANCE-INDEX'),
         ('^FCHI', 'CAC 40'),
     ]
-    stonk_select = forms.ChoiceField(choices=symbols)  # takes lists of tuples as value/label pairs.
-    symbol = forms.CharField(required=True, max_length=10, initial="CADUSD=X")
-    period = forms.CharField(required=False, max_length=5)   # 1d, 5d, 1mo, 3mo, 6mo, 1y, 2y, 5y, 10y, ytd, max
+    select = forms.ChoiceField(label='Symbol', choices=symbols)  # takes lists of tuples as value/label pairs.
+    symbol = forms.CharField(label='Symbol', required=True, max_length=20, initial="CADUSD=X")
+    period = forms.CharField(label='Symbol', required=False, max_length=5)   # 1d, 5d, 1mo, 3mo, 6mo, 1y, 2y, 5y, 10y, ytd, max
     start = forms.DateField(widget=forms.DateInput(
         attrs={'class': 'startDate'}),
         label='Start Date', required=False)

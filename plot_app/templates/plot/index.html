@@ -12,13 +12,12 @@
     <div>
 
         <form  action="process_stock/" method="POST">
-            {% csrf_token %}
-            {{ stock_form.stonk_select}}
-            {{ stock_form.symbol}}
-            {{ stock_form.period}}
-            {{ stock_form.start}}
-            {{ stock_form.end}}
-
+            {% csrf_token %} <!--these need to be run through the server or Django will not render them -->
+            {{ form.select}}
+            {{ form.symbol}}
+            {{ form.period}}
+            {{ form.start}}
+            {{ form.end}}
             <button type="submit">Select</button>
         </form>
 
@@ -28,12 +27,6 @@
 <div>
     <label for="about"><a name="about" href="./about.html">About</a></label>
 </div>
-<!--<div class="stonk-table">-->
-<!--    <table>-->
-<!--<thead>-->
-<!--#  todo create table to display stonk data-->
-<!--</thead>-->
-<!--    </table>-->
-<!--</div>-->
+
 </body>
 </html>

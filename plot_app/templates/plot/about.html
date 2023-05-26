@@ -6,17 +6,18 @@
 </head>
 <body>
 <h1>About Stonks</h1>
-<p> symbol = ''  # string representation of stock ticker symbol
-    data = ''  # A Ticker object using the symbol passed.
-    history = ''
-    # interval = ''  # data interval (intraday data cannot extend last 60 days)
-    # Valid intervals are: 1m, 2m, 5m, 15m, 30m, 60m, 90m, 1h, 1d, 5d, 1wk, 1mo, 3mo.
-    period = ''  # data period to download (Either Use period parameter or use start and end)
-    # Valid periods are: 1d, 5d, 1mo, 3mo, 6mo, 1y, 2y, 5y, 10y, ytd, max.
-    # start = ''  # If not using period - Download start date string (YYYY-MM-DD) or datetime.
-    # end = ''  # If not using period - Download end date string (YYYY-MM-DD) or datetime.</p>
+<p>
+    symbol  a string representation of stock ticker symbol
+    data = a Ticker object using the symbol passed.
+    interval = the data interval (intraday data cannot extend last 60 days)
+        Valid intervals are: 1m, 2m, 5m, 15m, 30m, 60m, 90m, 1h, 1d, 5d, 1wk, 1mo, 3mo.
+    period = the period to download (Either Use period parameter or use start and end not both)
+        Valid periods are: 1d, 5d, 1mo, 3mo, 6mo, 1y, 2y, 5y, 10y, ytd, max.
+    start = If not using period - Download start date string (YYYY-MM-DD) or datetime.
+    end = f not using period - Download end date string (YYYY-MM-DD) or datetime.
+</p>
 <div>
-    <label for=""><a href="./home.html">Home</a></label>
+    <li><a href="{% url 'plot-home' %}">Home</a></li>
 </div>
 </body>
 </html>
