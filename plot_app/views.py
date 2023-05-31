@@ -19,7 +19,7 @@ def process_stock_view(request):
         form = stock_form(request.POST)
         # check whether it's valid:
         if form.is_valid():
-            form.cleaned_data()
+
             # process the data in form.cleaned_data as required
             symbol = form.cleaned_data['symbol']
             period = form.cleaned_data['period']
@@ -57,8 +57,9 @@ def process_stock_view(request):
 
             # redirect to a new URL:
             return render(request, "plot/stock_detail.html", {'data': data})
-            # replace this third argument with a
-            # dictionary ('key': 'value' pairs) to create the context for the template.
+            # replace this third argument with the Dict above
+            # ('key': 'value' pairs) to create the context for the template.
+            # In this case reference {{data}} in the template
 
         # if a GET (or any other method) we'll create a blank form
         else:

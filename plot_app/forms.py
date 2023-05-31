@@ -28,3 +28,6 @@ class stock_form(forms.Form):
     end = forms.DateField(widget=forms.DateInput(
         attrs={'class': 'endDate'}),
         label='End Date', required=False)
+
+
+
