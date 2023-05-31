@@ -1,4 +1,7 @@
 /plot_app/migrations/
 /env/
 /.idea/
-/plot_app/templates/plot/index.bak.html/
+/.gitignore/
+/db.sqlite3/
+/manage.py/
+/Stonk_app.excalidraw/
