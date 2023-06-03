@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from .forms import stock_form
 import yfinance as yf
+import plotly.graph_objects as go
 
 
-# Create your views here.
 def index(request):
     form = stock_form()
     return render(request, 'plot/index.html', {'form': form})  #
@@ -19,49 +19,41 @@ def process_stock_view(request):
         form = stock_form(request.POST)
         # check whether it's valid:
         if form.is_valid():
-
-            # process the data in form.cleaned_data as required
-            symbol = form.cleaned_data['symbol']
-            period = form.cleaned_data['period']
-            start = form.cleaned_data['start']
-            end = form.cleaned_data['end']
-
-            # derived data using yfinance
-            history = yf.Ticker(symbol).history(period)
-            history_flat = history.reset_index()
-            date = history_flat['Date']
-            open = history['Open']
-            high = history['High']
-            low = history['Low']
-            close = history['Close']
-            volume = history['volume']
-            dividends = history['dividends']
-            splits = history['splits']
-
             # Dict to pass this data into the template
-            data = {
-                'symbol': symbol,
-                'period': period,
-                'start': start,
-                'end': end,
-                'history': history_flat,
-                'date': date,
-                'open': open,
-                'high': high,
-                'low': low,
-                'close': close,
-                'volume': volume,
-                'dividends': dividends,
-                'splits': splits,
-            }
+            if form.cleaned_data['select'] != 'Select a Stock':
+                symbol = form.cleaned_data['select']
+            else:
+                symbol = form.cleaned_data['symbol']
 
-            # redirect to a new URL:
-            return render(request, "plot/stock_detail.html", {'data': data})
-            # replace this third argument with the Dict above
-            # ('key': 'value' pairs) to create the context for the template.
-            # In this case reference {{data}} in the template
+        data = {
+                'symbol': symbol,
+                'period': form.cleaned_data['period'],
+                'start': form.cleaned_data['start'],
+                'end': form.cleaned_data['end'],
+        }
+
+        if not data['period']:
+            chart_data = yf.download(tickers=data['symbol'], start=['start'], end=data['end'])
+        else:
+            chart_data = yf.download(data['symbol'], period=data['period'])
+
+        chart_data = chart_data.reset_index()
+        chart = go.Figure(data=[go.Candlestick(x=chart_data['Date'],
+            open=chart_data['Open'],
+            high=chart_data['High'],
+            low=chart_data['Low'],
+            close=chart_data['Close'],
+        )])
+
+        chart.show()
+
+        return render(request, "plot/index.html", {'data': data})
+        # replace this third argument with the Dict above
+        # ('key': 'value' pairs) to create the context for the template.
+        # In this case reference {{data}} in the template
 
         # if a GET (or any other method) we'll create a blank form
-        else:
-            form = stock_form()
-            return render(request, 'plot/stock_detail.html', {'form': form})
+    else:
+        form = stock_form()
+        return render(request, 'plot/index.html', {'form': form})
+

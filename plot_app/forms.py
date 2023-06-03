@@ -4,6 +4,7 @@ from django import forms
 
 class stock_form(forms.Form):
     symbols = [
+        ('Enter a Stock','Select a Stock'),
         ('CADUSD=X', 'USD / CAD'),
         ('XIU.TO', 'iShares S&P/TSX 60 Index ETF'),
         ('GC=F', 'Gold Futures'),
@@ -19,15 +20,31 @@ class stock_form(forms.Form):
         ('^GDAXI', 'DAX PERFORMANCE-INDEX'),
         ('^FCHI', 'CAC 40'),
     ]
-    select = forms.ChoiceField(label='Symbol', choices=symbols)  # takes lists of tuples as value/label pairs.
-    symbol = forms.CharField(label='Symbol', required=True, max_length=20, initial="CADUSD=X")
-    period = forms.CharField(label='Symbol', required=False, max_length=5)   # 1d, 5d, 1mo, 3mo, 6mo, 1y, 2y, 5y, 10y, ytd, max
+    periods = [('', 'None'),
+               ('1-day', '1d'),
+               ('5-day', '5d'),
+               ('30-day', '1mo'),
+               ('90-day', '3mo'),
+               ('6-months', '6mo'),
+               ('1-year', '1y'),
+               ('2-years', '2y'),
+               ('5-years', '5y'),
+               ('10-years', '10y'),
+               ('year-to-date', 'ytd'),
+               ('Max', 'max'),
+               ]
+    select = forms.ChoiceField(label='Stock Select:', choices=symbols)  # takes lists of tuples as value/label pairs.
+    symbol = forms.CharField(label='Symbol:', required=False, max_length=20,initial=symbols[0][0])
+    period = forms.ChoiceField(label='Select Period:', choices=periods, required=False)
     start = forms.DateField(widget=forms.DateInput(
-        attrs={'class': 'startDate'}),
+        attrs={'type': 'date', 'class': 'startDate', }),
         label='Start Date', required=False)
     end = forms.DateField(widget=forms.DateInput(
-        attrs={'class': 'endDate'}),
+        attrs={'class': 'endDate', 'type': 'date'}),
         label='End Date', required=False)
 
 
+def __init__(self, *args, **kwargs):
+    super().__init__( *args, **kwargs)
+    self.fields['symbol'] = self.fields['select']
 

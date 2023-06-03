@@ -10,22 +10,61 @@
     </div>
 
     <div>
-
-        <form  action="process_stock/" method="POST">
+<fieldset form="stock-entry">
+     <legend>Choose Your Stock for Charting</legend>
+            <form id="stock-entry" action="process_stock/" method="POST">
             {% csrf_token %} <!--these need to be run through the server or Django will not render them -->
-            {{ form.select}}
-            {{ form.symbol}}
-            {{ form.period}}
-            {{ form.start}}
-            {{ form.end}}
-            <button type="submit">Select</button>
+             {{ form.select.label}}
+                {{ form.select}}
+                <p>or enter a stock manually:</p>
+            {{ form.symbol.label}}
+                {{ form.symbol}}
+                <br>
+                <p>choose your time period:</p>
+            {{ form.period.label}}
+                 {{ form.period}}
+                <br>
+                <p> or enter it manually:</p>
+            {{ form.start.label}}
+                {{ form.start}}
+                <br>
+                <p></p>
+            {{ form.end.label}}
+                {{ form.end}}
+                <br>
+                <p>When satisfied select your stock:</p>
+            <button type="submit">Complete</button>
         </form>
-
+</fieldset>
+    </div>
+    <div class="stonk-table">
+        <form action="chart/" method="POST">
+            {% csrf_token %}
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="3">Symbol:     </th>
+                        <th colspan="3">Period:       </th>
+                        <th colspan="3">Start:       </th>
+                        <th colspan="3">End:       </th>
+                    </tr>
+                </thead>
+                <tbody>
+<!--                {{ data }}-->
+                    <tr>
+                        <td>      {{ data.symbol }}    </td>
+                        <td colspan="3">      {{ data.period }}      </td>
+                        <td colspan="3">      {{ data.start }}      </td>
+                        <td colspan="3">      {{ data.end }}      </td>
+                        <td > <button type="submit">Generate</button>    </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
     </div>
 
-
 <div>
-    <label for="about"><a name="about" href="./about.html">About</a></label>
+    <label for="about"><a name="about" href=#>About</a></label>
 </div>
 
 </body>
