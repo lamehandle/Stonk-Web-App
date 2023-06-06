@@ -38,6 +38,8 @@ def process_stock_view(request):
             chart_data = yf.download(data['symbol'], period=data['period'])
 
         chart_data = chart_data.reset_index()
+        x_axis = chart_data['Date']
+        y_axis = chart_data['Volume']
         chart = go.Figure(data=[go.Candlestick(x=chart_data.index,
             open=chart_data['Open'],
             high=chart_data['High'],
