@@ -1,8 +1,8 @@
-/plot_app/migrations/
-/env/
-/.idea/
-/.gitignore/
-/db.sqlite3/
-/manage.py/
-/Stonk_app.excalidraw/
-/plot.py/
+plot_app/migrations/
+plot_app/plot.py
+env/
+.idea/
+.gitignore
+db.sqlite3
+manage.py
+Stonk_app.excalidraw/
