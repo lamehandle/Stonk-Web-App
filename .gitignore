@@ -7,3 +7,4 @@ db.sqlite3
 manage.py
 Stonk_app.excalidraw/
 plot_app/plot.py
+/test_stock_symbols.txt

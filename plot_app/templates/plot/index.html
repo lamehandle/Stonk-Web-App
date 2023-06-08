@@ -36,34 +36,34 @@
             <button type="submit">Complete</button>
         </form>
 </fieldset>
-    </div>
-    <div class="stonk-table">
-        <form action="chart/" method="POST">
-            {% csrf_token %}
-            <table>
-                <thead>
-                    <tr>
-                        <th colspan="3">Symbol:     </th>
-                        <th colspan="3">Period:       </th>
-                        <th colspan="3">Start:       </th>
-                        <th colspan="3">End:       </th>
-                    </tr>
-                </thead>
-                <tbody>
-<!--                {{ data }}-->
-                    <tr>
-                        <td>      {{ data.symbol }}    </td>
-                        <td colspan="3">      {{ data.period }}      </td>
-                        <td colspan="3">      {{ data.start }}      </td>
-                        <td colspan="3">      {{ data.end }}      </td>
-                        <td > <button type="submit">Generate</button>    </td>
-                    </tr>
-                </tbody>
-            </table>
-        </form>
-    </div>
+<!--    </div>-->
+<!--    <div class="stonk-table">-->
+<!--        <form action="chart/" method="POST">-->
+<!--            {% csrf_token %}-->
+<!--            <table>-->
+<!--                <thead>-->
+<!--                    <tr>-->
+<!--                        <th colspan="3">Symbol:     </th>-->
+<!--                        <th colspan="3">Period:       </th>-->
+<!--                        <th colspan="3">Start:       </th>-->
+<!--                        <th colspan="3">End:       </th>-->
+<!--                    </tr>-->
+<!--                </thead>-->
+<!--                <tbody>-->
+<!--&lt;!&ndash;                {{ data }}&ndash;&gt;-->
+<!--                    <tr>-->
+<!--                        <td>      {{ data.symbol }}    </td>-->
+<!--                        <td colspan="3">      {{ data.period }}      </td>-->
+<!--                        <td colspan="3">      {{ data.start }}      </td>-->
+<!--                        <td colspan="3">      {{ data.end }}      </td>-->
+<!--                        <td > <button type="submit">Generate</button>    </td>-->
+<!--                    </tr>-->
+<!--                </tbody>-->
+<!--            </table>-->
+<!--        </form>-->
+<!--    </div>-->
 
-<div>
+<!--<div>-->
     <label for="about"><a name="about" href=#>About</a></label>
 </div>
 
