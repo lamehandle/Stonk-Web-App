@@ -45,7 +45,9 @@ def process_stock_view(request):
             high=chart_data['High'],
             low=chart_data['Low'],
             close=chart_data['Close'],
-        )])
+                ),
+            ]
+        )
 
         chart.show()
 
