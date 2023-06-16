@@ -34,7 +34,8 @@ class stock_form(forms.Form):
                ('Max', 'max'),
                ]
     select = forms.ChoiceField(label='Stock Select:', choices=symbols)  # takes lists of tuples as value/label pairs.
-    symbol = forms.CharField(label='Symbol:', required=False, max_length=20,initial=symbols[0][0])
+    symbol = forms.CharField(label='Symbol:', required=False, max_length=20, widget=forms.TextInput(
+        {'placeholder': 'Enter a Stock Symbol'}))
     period = forms.ChoiceField(label='Select Period:', choices=periods, required=False, initial=periods[11])
     start = forms.DateField(widget=forms.DateInput(
         attrs={'type': 'date', 'class': 'startDate', }),

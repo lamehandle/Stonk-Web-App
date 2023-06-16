@@ -2,7 +2,7 @@ from django.shortcuts import render
 from .forms import stock_form
 import yfinance as yf
 import plotly.graph_objects as go
-
+# import stock_validation as sv
 
 def index(request):
     form = stock_form()
@@ -14,6 +14,7 @@ def about(request):
 
 
 def process_stock_view(request):
+
     if request.method == "POST":
         # create a form instance and populate it with data from the request:
         form = stock_form(request.POST)
