@@ -4,7 +4,7 @@ from django import forms
 
 class stock_form(forms.Form):
     symbols = [
-        ('Enter a Stock','Select a Stock'),
+        ('Enter a Stock', 'Select a Stock'),
         ('CADUSD=X', 'USD / CAD'),
         ('XIU.TO', 'iShares S&P/TSX 60 Index ETF'),
         ('GC=F', 'Gold Futures'),
@@ -43,9 +43,12 @@ class stock_form(forms.Form):
     end = forms.DateField(widget=forms.DateInput(
         attrs={'class': 'endDate', 'type': 'date'}),
         label='End Date', required=False)
+    stop_loss_order = forms.DecimalField(label='Stop Loss Order:', required=False, min_value=0.0,
+                                   widget=forms.NumberInput({'placeholder': 'Enter a Stop Loss Order Trigger value'}))
+    take_profit_order = forms.DecimalField(label='Take Profit Order:', required=False, min_value=0.0,
+                                           widget=forms.NumberInput({'placeholder': 'Enter a Take loss Trigger value'}))
 
 
 def __init__(self, *args, **kwargs):
-    super().__init__( *args, **kwargs)
+    super().__init__(*args, **kwargs)
     self.fields['symbol'] = self.fields['select']
-

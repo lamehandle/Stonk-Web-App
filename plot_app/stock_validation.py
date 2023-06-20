@@ -3,6 +3,7 @@ from .forms import stock_form
 import yfinance as yf
 import plotly.graph_objects as go
 
+
 # todo refactor to use dash
 def stock_validation(request):
     if request.method == "POST":
@@ -39,12 +40,9 @@ def stock_validation(request):
                                                )])
 
         chart.update_layout(title=symbol + " Stock data",
-            y_axis_title= symbol + " "+ chart_data['Volume'],
+                            y_axis_title=symbol + " " + chart_data['Volume'],
 
                             )
-
-
-
 
         chart.show()
 
