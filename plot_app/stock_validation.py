@@ -10,48 +10,48 @@ def stock_validation(request):
         # create a form instance and populate it with data from the request:
         form = stock_form(request.POST)
         # check whether it's valid:
+        print(form.cleaned_data)
+
         if form.is_valid():
             # Dict to pass this data into the template
-            if form.cleaned_data['select'] != 'Select a Stock':
-                symbol = form.cleaned_data['select']
-            else:
+            if not form.cleaned_data['symbol'].empty:
                 symbol = form.cleaned_data['symbol']
+            else:
+                symbol = form.cleaned_data['select']
 
-        data = {
-            'symbol': symbol,
-            'period': form.cleaned_data['period'],
-            'start': form.cleaned_data['start'],
-            'end': form.cleaned_data['end'],
-        }
+            data = {
+                'symbol':  form.cleaned_data['select'],
+                'period': form.cleaned_data['period'],
+                'start': form.cleaned_data['start'],
+                'end': form.cleaned_data['end'],
+                'stop_loss_order': form.cleaned_data['stop_loss_order'],
+                'take_profit_order': form.cleaned_data['take_profit_order'],
+            }
 
-        if not data['period']:
-            chart_data = yf.download(tickers=data['symbol'], start=['start'], end=data['end'])
-        else:
-            chart_data = yf.download(data['symbol'], period=data['period'])
+            chart = yf.Ticker(data['symbol'])
 
-        chart_data = chart_data.reset_index()
-        x_axis = chart_data['Date']
-        y_axis = chart_data['Volume']
-        chart = go.Figure(data=[go.Candlestick(title=symbol, x=chart_data.index,
-                                               open=chart_data['Open'],
-                                               high=chart_data['High'],
-                                               low=chart_data['Low'],
-                                               close=chart_data['Close'],
-                                               )])
+            if not data['period']:
+                chart.history(start=data['start'], end=data['end'])
+            else:
+                chart.history(period=data['period'])
 
-        chart.update_layout(title=symbol + " Stock data",
-                            y_axis_title=symbol + " " + chart_data['Volume'],
+            chart = chart.reset_index()
 
-                            )
+            x_axis = chart['Date']
+            y_axis = chart['Volume']
+            chart = go.Figure(data=[go.Candlestick(title=chart['symbol'], x=chart.index,
+                                                   open=chart['Open'],
+                                                   high=chart['High'],
+                                                   low=chart['Low'],
+                                                   close=chart['Close'],
+                                                   )])
 
-        chart.show()
+            chart.update_layout(title=chart['symbol'] + " Stock data",
+                                y_axis_title='Price',
 
-        return render(request, "plot/index.html", {'data': data})
-        # replace this third argument with the Dict above
-        # ('key': 'value' pairs) to create the context for the template.
-        # In this case reference {{data}} in the template
+                                )
 
-        # if a GET (or any other method) we'll create a blank form
+            chart.show()
     else:
         form = stock_form()
         return render(request, 'plot/index.html', {'form': form})

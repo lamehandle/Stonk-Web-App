@@ -3,7 +3,7 @@ from django import forms
 
 
 class stock_form(forms.Form):
-    symbols = [
+    companies = [
         ('Enter a Stock', 'Select a Stock'),
         ('CADUSD=X', 'USD / CAD'),
         ('XIU.TO', 'iShares S&P/TSX 60 Index ETF'),
@@ -33,7 +33,7 @@ class stock_form(forms.Form):
                ('year-to-date', 'ytd'),
                ('Max', 'max'),
                ]
-    select = forms.ChoiceField(label='Stock Select:', choices=symbols)  # takes lists of tuples as value/label pairs.
+    select = forms.ChoiceField(label='Stock Select:', choices=companies)  # takes lists of tuples as value/label pairs.
     symbol = forms.CharField(label='Symbol:', required=False, max_length=20, widget=forms.TextInput(
         {'placeholder': 'Enter a Stock Symbol'}))
     period = forms.ChoiceField(label='Select Period:', choices=periods, required=False, initial=periods[11])
@@ -44,11 +44,7 @@ class stock_form(forms.Form):
         attrs={'class': 'endDate', 'type': 'date'}),
         label='End Date', required=False)
     stop_loss_order = forms.DecimalField(label='Stop Loss Order:', required=False, min_value=0.0,
-                                   widget=forms.NumberInput({'placeholder': 'Enter a Stop Loss Order Trigger value'}))
+                                         widget=forms.NumberInput(
+                                             {'placeholder': 'Enter a Stop Loss Order Trigger value'}))
     take_profit_order = forms.DecimalField(label='Take Profit Order:', required=False, min_value=0.0,
                                            widget=forms.NumberInput({'placeholder': 'Enter a Take loss Trigger value'}))
-
-
-def __init__(self, *args, **kwargs):
-    super().__init__(*args, **kwargs)
-    self.fields['symbol'] = self.fields['select']

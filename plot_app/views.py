@@ -2,7 +2,7 @@ from django.shortcuts import render
 from .forms import stock_form
 import yfinance as yf
 import plotly.graph_objects as go
-# import stock_validation as sv
+
 
 def index(request):
     form = stock_form()
@@ -21,10 +21,10 @@ def process_stock_view(request):
         # check whether it's valid:
         if form.is_valid():
             # Dict to pass this data into the template
-            if form.cleaned_data['select'] != 'Select a Stock':
-                symbol = form.cleaned_data['select']
-            else:
+            if not form.cleaned_data['select']:
                 symbol = form.cleaned_data['symbol']
+            else:
+                symbol = form.cleaned_data['select']
 
         data = {
                 'symbol': symbol,
