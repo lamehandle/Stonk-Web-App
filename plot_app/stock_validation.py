@@ -20,7 +20,7 @@ def stock_validation(request):
                 symbol = form.cleaned_data['select']
 
             data = {
-                'symbol':  form.cleaned_data['select'],
+                'symbol':  symbol,
                 'period': form.cleaned_data['period'],
                 'start': form.cleaned_data['start'],
                 'end': form.cleaned_data['end'],
@@ -39,17 +39,18 @@ def stock_validation(request):
 
             x_axis = chart['Date']
             y_axis = chart['Volume']
-            chart = go.Figure(data=[go.Candlestick(title=chart['symbol'], x=chart.index,
+            chart = go.Figure(data=[go.Candlestick(name=chart['symbol'],
+                                                   title=chart['symbol'], x=x_axis,
                                                    open=chart['Open'],
                                                    high=chart['High'],
                                                    low=chart['Low'],
                                                    close=chart['Close'],
                                                    )])
 
-            chart.update_layout(title=chart['symbol'] + " Stock data",
-                                y_axis_title='Price',
+            chart.update_layout(title='Stock data for ' + chart['symbol'],
+                                y_axis_title='Price', xaxis_rangeslider_visible=False)
 
-                                )
+
 
             chart.show()
     else:
