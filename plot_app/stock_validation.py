@@ -29,13 +29,15 @@ def stock_validation(request):
             }
 
             chart = yf.Ticker(data['symbol'])
-
-            if not data['period']:
-                chart.history(start=data['start'], end=data['end'])
-            else:
-                chart.history(period=data['period'])
-
+            chart.index = chart.index.tz_localize(None)
             chart = chart.reset_index()
+
+
+
+
+
+
+
 
             x_axis = chart['Date']
             y_axis = chart['Volume']
