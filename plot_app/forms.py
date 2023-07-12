@@ -19,6 +19,14 @@ class stock_form(forms.Form):
         ('^FTSE', 'FTSE 100'),
         ('^GDAXI', 'DAX PERFORMANCE-INDEX'),
         ('^FCHI', 'CAC 40'),
+        ('AAPL', 'Apple'),
+        ('MSFT', 'Microsoft'),
+        ('LLY', 'Eli Lily and Company'),
+        ('JNJ', 'Johnson & Johnson'),
+        ('MRK', 'Merck & Co., Inc.'),
+        ('NVO', 'Novo Nordisk A/S'),
+        # ('', ''), extra to add more companies
+        # ('', ''),
     ]
     periods = [('', 'None'),
                ('1-day', '1d'),
