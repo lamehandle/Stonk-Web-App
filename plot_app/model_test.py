@@ -47,11 +47,13 @@ print("do you want to set a Stop Loss Order? ")
 set_stop_loss = input('Y or N: ')
 if set_stop_loss.capitalize() == 'Y':
     stop_loss = float(input("Set your Stop Loss Order amount: $ "))
-    stop_loss_df = pd.DataFrame(['Stop Loss', stop_loss])
+    stop_loss_df = pd.DataFrame({'Open': stop_loss, 'High': stop_loss, 'Low': stop_loss, 'Close': stop_loss},
+                                index=['Stop Loss Order'])
     print(stop_loss_df)
 else:
     stop_loss = None
-    stop_loss_df = pd.DataFrame(['Stop Loss', stop_loss])
+    stop_loss_df = pd.DataFrame({'Open': stop_loss, 'High': stop_loss, 'Low': stop_loss, 'Close': stop_loss},
+                                index=['Stop Loss Order'])
     print(stop_loss_df)
 
 # take profit order logic
@@ -61,15 +63,15 @@ print("do you want to set a Take Profit Order? ")
 set_take_profit = input('Y or N: ')
 if set_take_profit.capitalize() == 'Y':
     take_profit = float(input("Set your Take Profit Order amount: $ "))
-    take_profit_df = pd.DataFrame(['Take Profit', take_profit])
+    take_profit_df = pd.DataFrame({'Open': take_profit, 'High': take_profit, 'Low': take_profit, 'Close': take_profit},
+                                  index=['Take Profit Order'])
     print(take_profit_df)
 else:
     take_profit = None
-    take_profit_df = pd.DataFrame(['Take Profit', take_profit])
+    take_profit_df = pd.DataFrame({'Open': take_profit, 'High': take_profit, 'Low': take_profit, 'Close': take_profit},
+                                  index=['Take Profit Order'])
     print(take_profit_df)
 
     # todo logic for comparing stop loss against the stock data
-    # datafram showing the intersection of stop loss and the stock data
-    stop_loss_match = pd.merge(stop_loss_df, comp_hist_df, left_index=True, right_index=True)
-    print(stop_loss_match)
-    
+    # merge "comp_hist_df" dataframe with the "stop_loss_df" dataframe to return teh intersection of the dataframes
+    #   will need to allow for greater than and less than logic
