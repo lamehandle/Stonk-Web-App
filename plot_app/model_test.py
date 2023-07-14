@@ -46,9 +46,6 @@ print("do you want to set a Stop Loss Order? ")
 set_stop_loss = input('Y or N: ')
 if set_stop_loss.capitalize() == 'Y':
     stop_loss = float(input("Set your Stop Loss Order amount: $ "))
-    # stop_loss_df = pd.DataFrame({'Open': stop_loss, 'High': stop_loss, 'Low': stop_loss, 'Close': stop_loss},
-    #                             index=['Stop Loss Order'])
-    # print(stop_loss_df)
 else:
     stop_loss = None
 
@@ -56,7 +53,7 @@ if stop_loss:
     print('match on stop_loss')
     print(comp_hist_df[comp_hist_df.Open <= stop_loss])
 else:
-    print('no match - Open')
+    print('no match - stop_loss')
 
 print("<===================== Stop Loss works ==========================>")
 
@@ -66,21 +63,12 @@ print("do you want to set a Take Profit Order? ")
 set_take_profit = input('Y or N: ')
 if set_take_profit.capitalize() == 'Y':
     take_profit = float(input("Set your Take Profit Order amount: $ "))
-    take_profit_df = pd.DataFrame({'Open': take_profit, 'High': take_profit, 'Low': take_profit, 'Close': take_profit},
-                                index=['Take Profit Order'])
-    print(take_profit_df)
 else:
     take_profit = None
-    take_profit_df = pd.DataFrame({'Open': take_profit, 'High': take_profit, 'Low': take_profit, 'Close': take_profit},
-                                index=['Take Profit Order'])
-    print(take_profit_df)
 
-
-    # todo logic for comparing stop loss against the stock data
-    # dataframe showing the intersection of stop loss and the stock data
-if stop_loss:
-    print('match on stop_loss')
-    print(comp_hist_df[comp_hist_df.Open <= stop_loss])
+if take_profit:
+    print('match on take profit')
+    print(comp_hist_df[comp_hist_df.Open <= take_profit])
 else:
-    print('no match - Open')
+    print('no match - take_profit')
     
