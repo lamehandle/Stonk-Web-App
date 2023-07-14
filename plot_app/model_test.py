@@ -58,7 +58,7 @@ else:
 print("<===================== Stop Loss works ==========================>")
 
 # take profit order logic
-take_profit = 0
+take_profit = None
 print("do you want to set a Take Profit Order? ")
 set_take_profit = input('Y or N: ')
 if set_take_profit.capitalize() == 'Y':
@@ -82,3 +82,6 @@ if take_profit:
 else:
     print('no match - take_profit')
 print("<===================== take profit works ==========================>")
+
+# todo data validation is required for input
+
