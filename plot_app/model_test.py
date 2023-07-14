@@ -71,9 +71,14 @@ if take_profit:
     print(comp_hist_df[comp_hist_df.Open >= take_profit])
 # this outputs a dataframe can also use this syntax comp_hist_df.loc[comp_hist_df.Open >= take_profit]
 # can search for multiple columns using the condition as swell
-#     dataframe.loc[dataframe.label = value, 'other_column', 'another column', ...]
-#                           label refers to row or column name
-# you can also pass a list
+# dataframe.loc[dataframe.label, 'other_column', 'another column', ...]
+#                           |                   |
+#                .label refers to           These are a comma separated list of
+#                row OR column name             column names
+#             you can also pass a lists
+#                         OR
+#               use conditional logic
+# dataframe.loc[dataframe.label  >= value | value, 'other_column', 'another column', ...]
 else:
     print('no match - take_profit')
-    
+print("<===================== take profit works ==========================>")
