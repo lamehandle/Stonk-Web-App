@@ -68,7 +68,12 @@ else:
 
 if take_profit:
     print('match on take profit')
-    print(comp_hist_df[comp_hist_df.Open <= take_profit])
+    print(comp_hist_df[comp_hist_df.Open >= take_profit])
+# this outputs a dataframe can also use this syntax comp_hist_df.loc[comp_hist_df.Open >= take_profit]
+# can search for multiple columns using the condition as swell
+#     dataframe.loc[dataframe.label = value, 'other_column', 'another column', ...]
+#                           label refers to row or column name
+# you can also pass a list
 else:
     print('no match - take_profit')
     
