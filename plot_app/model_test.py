@@ -11,11 +11,10 @@ from datetime import date
 print('''<===================================================>
                     Welcome!
 <===================================================>''')
-company_symbol = input("""Select a company using their stock symbol: 
->_""")
+company_symbol = input("Select a company using their stock symbol: ")
 company = yf.Ticker(company_symbol)
 # pd.DataFrame(company.info)
-print(pd.DataFrame(company.info))
+# print(pd.DataFrame(company.info['quoteSourceName']))
 print("<===================================================>")
 
 # determine if user has dates or a period
@@ -39,40 +38,49 @@ else:
     comp_hist = company.history(start=start_date, end=end_date)
     comp_hist_df = pd.DataFrame(comp_hist).reset_index()
     print(comp_hist_df)
+print("<===================== Good ==========================>")
 
 # stop loss order logic
 stop_loss = 0
-stop_loss_df = {}
 print("do you want to set a Stop Loss Order? ")
 set_stop_loss = input('Y or N: ')
 if set_stop_loss.capitalize() == 'Y':
     stop_loss = float(input("Set your Stop Loss Order amount: $ "))
-    stop_loss_df = pd.DataFrame({'Open': stop_loss, 'High': stop_loss, 'Low': stop_loss, 'Close': stop_loss},
-                                index=['Stop Loss Order'])
-    print(stop_loss_df)
+    # stop_loss_df = pd.DataFrame({'Open': stop_loss, 'High': stop_loss, 'Low': stop_loss, 'Close': stop_loss},
+    #                             index=['Stop Loss Order'])
+    # print(stop_loss_df)
 else:
     stop_loss = None
-    stop_loss_df = pd.DataFrame({'Open': stop_loss, 'High': stop_loss, 'Low': stop_loss, 'Close': stop_loss},
-                                index=['Stop Loss Order'])
-    print(stop_loss_df)
+
+if stop_loss:
+    print('match on stop_loss')
+    print(comp_hist_df[comp_hist_df.Open <= stop_loss])
+else:
+    print('no match - Open')
+
+print("<===================== Stop Loss works ==========================>")
 
 # take profit order logic
 take_profit = 0
-take_profit_df = {}
 print("do you want to set a Take Profit Order? ")
 set_take_profit = input('Y or N: ')
 if set_take_profit.capitalize() == 'Y':
     take_profit = float(input("Set your Take Profit Order amount: $ "))
     take_profit_df = pd.DataFrame({'Open': take_profit, 'High': take_profit, 'Low': take_profit, 'Close': take_profit},
-                                index=['Stop Loss Order'])
+                                index=['Take Profit Order'])
     print(take_profit_df)
 else:
     take_profit = None
     take_profit_df = pd.DataFrame({'Open': take_profit, 'High': take_profit, 'Low': take_profit, 'Close': take_profit},
-                                index=['Stop Loss Order'])
+                                index=['Take Profit Order'])
     print(take_profit_df)
 
+
     # todo logic for comparing stop loss against the stock data
-    # datafram showing the intersection of stop loss and the stock data
-   
+    # dataframe showing the intersection of stop loss and the stock data
+if stop_loss:
+    print('match on stop_loss')
+    print(comp_hist_df[comp_hist_df.Open <= stop_loss])
+else:
+    print('no match - Open')
     
