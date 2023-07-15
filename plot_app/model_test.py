@@ -3,7 +3,7 @@ import pandas as pd
 from datetime import date
 
 ################################################################################
-#  create a main loop that user can interact with
+# create a main loop that user can interact with
 # this loop takes user input to:
     # set company symbol
     # set .history() period
@@ -38,10 +38,11 @@ else:
     comp_hist = company.history(start=start_date, end=end_date)
     comp_hist_df = pd.DataFrame(comp_hist).reset_index()
     print(comp_hist_df)
-print("<===================== Good ==========================>")
+print("<===================== Company Data Retrieved ==========================>")
 
 # stop loss order logic
 stop_loss = 0
+# stop_loss_filter()
 print("do you want to set a Stop Loss Order? ")
 set_stop_loss = input('Y or N: ')
 if set_stop_loss.capitalize() == 'Y':
@@ -55,7 +56,7 @@ if stop_loss:
 else:
     print('no match - stop_loss')
 
-print("<===================== Stop Loss works ==========================>")
+print("<===================== Stop Loss Section ==========================>")
 
 # take profit order logic
 take_profit = None
@@ -66,6 +67,7 @@ if set_take_profit.capitalize() == 'Y':
 else:
     take_profit = None
 
+# todo data validation is required for input large values cause an error in take profit
 if take_profit:
     print('match on take profit')
     print(comp_hist_df[comp_hist_df.Open >= take_profit])
@@ -78,10 +80,10 @@ if take_profit:
 #             you can also pass a lists
 #                         OR
 #               use conditional logic
-# dataframe.loc[dataframe.label  >= value | value, 'other_column', 'another column', ...]
+# dataframe.loc[(dataframe.label  >= value) "&&" OR "|" (value, 'other_column', 'another column', ...)]
+#
 else:
     print('no match - take_profit')
 print("<===================== take profit works ==========================>")
 
-# todo data validation is required for input
 
