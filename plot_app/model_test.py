@@ -18,9 +18,11 @@ sf.stop_loss_filter(comp_hist_df)
 sf.take_profit_filter(comp_hist_df)
 
 # Chart main stock data8
-# x-axis should be the date labled.
-# y-axis should be stock price. labled.
+# x-axis should be the date labeled.
+# y-axis should be stock price. labeled.
 # removed slider from layout.
 # Chart filtered rows over original data.
 #
 
+# further the simulation needs to start with an amount of money
+# on each round of the simulation add or subtract funds based on the bets.
