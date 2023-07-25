@@ -1,3 +1,28 @@
+
+def purchase_stocks(bank, invest, stock_units, comp_hist_df, ):
+    ask = True
+    while ask:
+        invest = float(input('How much do you wish to invest? '))
+        if invest > bank:
+            print("You don't have enough funds!")
+            ask = True
+        else:
+            bank -= invest
+            print('you have ' + str(bank) + ' remaining.')
+            ask = False
+    opens = comp_hist_df['Open']  # need to use bracket notation to create a Series
+    # print(opens)
+    for values in opens:
+        if invest - values >= 0.0:
+            invest -= values
+            stock_units += 1
+    bank += invest
+    print(str(stock_units) + " Stock Units.")
+    print('$' + str(invest) + ' remaining')
+    print('$' + str(bank) + ' remaining')
+    return bank
+
+
 def stop_loss_filter(comp_hist_df):
     stop_loss = 0
     print("do you want to set a Stop Loss Order? ")
@@ -9,9 +34,15 @@ def stop_loss_filter(comp_hist_df):
 
     if stop_loss:
         print('match on stop_loss')
-        stop_match = comp_hist_df[comp_hist_df.Open <= stop_loss]
+        stop_match = comp_hist_df[comp_hist_df.Open == stop_loss]
         if stop_match.empty:
             print('Stop loss set but no matching values.')
+
+        print(stop_match['Open'])
+        print(stop_match.High)
+        print(stop_match.Low)
+        print(stop_match.Close)
+
         print(stop_match)
         print("<===================== Stop Loss set! ==========================>")
         return stop_match
