@@ -2,7 +2,7 @@ import yfinance as yf
 import pandas as pd
 import numpy as np
 from datetime import date
-from company import retrieve_single_day
+from company import retrieve_single_day, advance_time
 import stock_filters as sf
 ################################################################################
 # from front-end grab user data
@@ -14,7 +14,7 @@ bank = 10000.00
 invest = 0
 stock_units = 0
 comp_hist_df = retrieve_single_day()
-
+print(comp_hist_df)
 # create a main loop that user can interact with
 # further the simulation needs to start with an amount of money
 bank = sf.purchase_stocks(bank, invest, stock_units, comp_hist_df)
@@ -27,8 +27,7 @@ take_profit = sf.take_profit_filter(comp_hist_df)
 
 # advance the loop 1 day
 advance_time(comp_hist_df)
-
-
+# works
 # on each round of the simulation add or subtract funds based on the bets.
 # add or subtract value of the match from bank.
 

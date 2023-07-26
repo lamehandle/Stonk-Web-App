@@ -8,16 +8,16 @@ def purchase_stocks(bank, invest, stock_units, comp_hist_df, ):
             ask = True
         else:
             bank -= invest
-            print('you have ' + str(bank) + ' remaining.')
+            print('you have $' + str(bank) + ' remaining.')
             ask = False
-    opens = comp_hist_df['Open']  # need to use bracket notation to create a Series
-    # print(opens)
+    opens = comp_hist_df["Open"]  # need to use bracket notation to create a Series
+    print(opens)
     for values in opens:
         if invest - values >= 0.0:
             invest -= values
             stock_units += 1
     bank += invest
-    print(str(stock_units) + " Stock Units.")
+    print("you now have " + str(stock_units) + " units of this stock.")
     print('$' + str(invest) + ' remaining')
     print('$' + str(bank) + ' remaining')
     return bank

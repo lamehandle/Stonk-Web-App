@@ -3,6 +3,7 @@ import pandas as pd
 from datetime import date, datetime, timedelta
 from dateutil.relativedelta import relativedelta
 
+
 def retrieve_company_data():
     print("<==================== imported ===============================>")
     company_symbol = input("Select a company using their stock symbol: ")
@@ -47,15 +48,23 @@ def retrieve_single_day():
         print("<===================== Company Data Retrieved! ==========================>")
         return comp_hist_df
     else:
-        # start: If not using period - Download start date string (YYYY-MM-DD) or datetime.
-        start_date = date.fromisoformat(input("enter the start date (YYYY-MM-DD): "))
-        # end: If not using period - Download end date string (YYYY-MM-DD) or datetime.
-        end_date = date.fromisoformat(input("enter the end date (YYYY-MM-DD): "))
-        comp_hist = company.history(start=start_date, end=end_date)
-        comp_hist_df = pd.DataFrame(comp_hist).reset_index()
-        print(comp_hist_df)
-        print("<===================== Company Data Retrieved! ==========================>")
-        return comp_hist_df
+        return retrieve_by_date(company)
+
+
+def retrieve_by_date(company):
+    # start: If not using period - Download start date string (YYYY-MM-DD) or datetime.
+    start_date = pd.to_datetime(input("enter the start date (YYYY-MM-DD): "))
+    end_date = start_date + pd.Timedelta(days=1)
+    comp_hist = company.history(start=start_date, end=end_date)
+    comp_hist_df = pd.DataFrame(comp_hist).reset_index()
+    print(comp_hist_df)
+    print("<===================== Company Data Retrieved! ==========================>")
+    return comp_hist_df
+
 
 def advance_time(comp_hist_df):
-    print(comp_hist_df["Date"])
+    original_date = comp_hist_df["Date"]
+    add_day = original_date + pd.Timedelta(days=1)
+    print(add_day)
+    return add_day
+
