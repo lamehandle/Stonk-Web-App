@@ -6,5 +6,13 @@ class User:
     invest = 0
     stock_units = 0
     comp_hist_df = retrieve_single_day()
-    print(comp_hist_df)
+    companies = []
 
+
+def __init__(self):
+    pass
+
+
+def get_company(self):
+    company = retrieve_company_data()
+    self.companies.append(company)
