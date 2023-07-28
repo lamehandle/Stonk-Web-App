@@ -14,7 +14,7 @@ bank = 10000.00
 invest = 0
 stock_units = 0
 comp_hist_df = retrieve_single_day()
-print(comp_hist_df)
+
 # create a main loop that user can interact with
 # further the simulation needs to start with an amount of money
 bank = sf.purchase_stocks(bank, invest, stock_units, comp_hist_df)
