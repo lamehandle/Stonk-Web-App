@@ -1,22 +1,17 @@
 
-def purchase_stocks(bank, invest, stock_units, comp_hist_df, ):
-    ask = True
-    while ask:
-        invest = float(input('How much do you wish to invest? '))
-        if invest > bank:
-            print("You don't have enough funds!")
-            ask = True
-        else:
-            bank -= invest
-            print('you have $' + str(bank) + ' remaining.')
-            ask = False
-    opens = comp_hist_df["Open"]  # need to use bracket notation to create a Series
-    print(opens)
-    for values in opens:
-        if invest - values >= 0.0:
-            invest -= values
-            stock_units += 1
-    bank += invest
+def purchase_stocks(bank, invest, stock_units, comp_hist_df):
+    invest = float(input('How much do you wish to invest? '))
+
+    if invest <= bank:
+        stock_units = invest // comp_hist_df["Open"]
+        print(stock_units)
+        cost = stock_units * comp_hist_df["Open"]
+        print(cost)
+        bank = (bank - cost)
+        print(str(bank) + 'mid-func')
+    else:
+        print("You don't have enough funds!")
+
     print("you now have " + str(stock_units) + " units of this stock.")
     print('$' + str(invest) + ' remaining')
     print('$' + str(bank) + ' remaining')

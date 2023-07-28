@@ -17,8 +17,11 @@ comp_hist_df = retrieve_single_day()
 
 # create a main loop that user can interact with
 # further the simulation needs to start with an amount of money
+#Allow purchasing of stocks based on current Open price.
 bank = sf.purchase_stocks(bank, invest, stock_units, comp_hist_df)
 print('$' + str(bank) + ' end')
+
+
 
 # stop loss order logic
 stop_loss = sf.stop_loss_filter(comp_hist_df)
