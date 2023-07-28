@@ -3,12 +3,12 @@ def purchase_stocks(bank, invest, stock_units, comp_hist_df):
     invest = float(input('How much do you wish to invest? '))
 
     if invest <= bank:
-        stock_units = invest // comp_hist_df["Open"]
-        print(stock_units)
-        cost = stock_units * comp_hist_df["Open"]
-        print(cost)
+        stock_units = invest // comp_hist_df["Open"].loc[0]
+        # print(str(stock_units) + ' units.')
+        cost = stock_units * comp_hist_df["Open"].loc[0]
+        # print('$' + str(cost))
         bank = (bank - cost)
-        print(str(bank) + 'mid-func')
+        # print('$' + str(bank) + 'mid-func')
     else:
         print("You don't have enough funds!")
 
