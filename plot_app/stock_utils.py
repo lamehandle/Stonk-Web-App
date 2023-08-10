@@ -9,12 +9,13 @@ def purchase_stocks(bank, invest, stock_units, comp_hist_df):
         # print('$' + str(cost))
         bank = (bank - cost)
         # print('$' + str(bank) + 'mid-func')
+        remaining = invest - cost
     else:
         print("You don't have enough funds!")
 
     print("you now have " + str(stock_units) + " units of this stock.")
-    print('$' + str(invest) + ' remaining')
-    print('$' + str(bank) + ' remaining')
+    print('$' + str(remaining) + ' remaining')
+    print('$' + str(bank) + ' remaining in your fund')
     return bank
 
 
@@ -74,3 +75,11 @@ def take_profit_filter(comp_hist_df):
     else:
         print('no match - take_profit')
     print("<===================== take profit works ==========================>")
+
+
+def advance_time(comp_hist_df):
+    original_date = comp_hist_df["Date"]
+    add_day = original_date + pd.Timedelta(days=1)
+    print(add_day)
+    return add_day
+

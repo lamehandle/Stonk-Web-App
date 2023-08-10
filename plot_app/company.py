@@ -62,9 +62,5 @@ def retrieve_by_date(company):
     return comp_hist_df
 
 
-def advance_time(comp_hist_df):
-    original_date = comp_hist_df["Date"]
-    add_day = original_date + pd.Timedelta(days=1)
-    print(add_day)
-    return add_day
+
 
