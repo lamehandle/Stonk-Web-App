@@ -15,8 +15,8 @@ ask = True
 bank = 10000.00
 invest = 500.00
 symbol = 'AAPL'
-stop_loss = None
-take_profit = None
+stop_loss = 0.0
+take_profit = 0.0
 stock_units = 0
 # comp_hist_df = retrieve_single_day()
 
