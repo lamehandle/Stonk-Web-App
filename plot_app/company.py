@@ -1,7 +1,6 @@
 import yfinance as yf
 import pandas as pd
 from datetime import date, datetime, timedelta
-from dateutil.relativedelta import relativedelta
 
 
 def retrieve_company_data():

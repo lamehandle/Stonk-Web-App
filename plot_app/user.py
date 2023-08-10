@@ -1,14 +1,15 @@
 import pandas as pd
 import yfinance as yf
+from datetime import date, datetime, timedelta
 
 
 class User:
-    bank = 10000.00
+    bank = 0.0
     invest_funds = 0
     stock_units = 0
-    comp_hist_df = {}
+    comp_hist_df = None
     companies = []
-    errors = []
+    errors = {}
     stop_loss = 0.0
     take_profit = 0.0
 
@@ -16,12 +17,12 @@ class User:
 def __init__(self, bank, invest_funds, company_symbol):
     self.bank = bank
     self.invest_funds = invest_funds
-    self.get_company(company_symbol,bank, invest_funds)
+    self.get_company_hist(company_symbol, bank, invest_funds)
 
 
-def get_company(self, symbol, bank=0.0, invest_funds=0.0, ):
+def get_company_hist(self, symbol, bank=0.0, invest_funds=0.0, ):
     company = self.retrieve_single_day(symbol)
-    self.companies.append(company)
+    self.companies.append(symbol)
     self.comp_hist_df = company
 
 
@@ -53,5 +54,11 @@ def take_profit(self, profit_value):
 
 
 def stop_loss(self, loss_value):
-    if loss_value
-    self.take_profit = loss_value
+    if loss_value >= 0.0:
+        self.take_profit = loss_value
+
+def advance_time(self, stock):
+    original_date = self.comp_hist_df["Date"]
+    add_day = original_date + pd.Timedelta(days=1)
+    print(add_day)
+    return add_day
