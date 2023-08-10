@@ -29,11 +29,11 @@ user.purchase_stocks(bank, invest)
 
 # stop loss order logic
 print("do you want to set a Stop Loss Order? ")
-stop_loss = float(input("Set your Stop Loss Order amount: $ "))
+user.stop_loss = float(input("Set your Stop Loss Order amount: $ "))
 
 # # take profit order logic
 print("do you want to set a Take Profit Order? ")
-take_profit = float(input("Set your Take Profit Order amount: $ "))
+user.take_profit = float(input("Set your Take Profit Order amount: $ "))
 
 # advance the loop 1 day
 user.advance_time()
