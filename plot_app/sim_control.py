@@ -7,6 +7,7 @@ class Simulation_Controller:
     raw_stock = input("Enter your stock symbol. ")
     raw_bank = input("How much funds are in the bank? ")
     raw_invest_amt = input("How much are you investing? ")
+
     # validate against list
     symbol_list = {}
     symbol = ''
