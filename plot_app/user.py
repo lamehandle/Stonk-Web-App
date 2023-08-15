@@ -14,13 +14,12 @@ class User:
     stop_loss = 0.0
     take_profit = 0.0
 
-    def __init__(self, init_bank: float, init_invest: float, company_symbol: str):
+    def __init__(self, init_bank: float, company_symbol: str):
         self.bank = init_bank
-        self.invest_funds = init_invest
         self.symbol = company_symbol
         self.get_company_hist()
 
-    def get_company_hist(self):
+    def get_company_hist(self, ):
         company = self.retrieve_single_day()
         self.companies.append(self.symbol)
         self.comp_hist_df = company
@@ -43,8 +42,10 @@ class User:
             remaining = invest_funds - cost
         else:
             self.errors = {"fund": "Not enough funds!"}
-
         return bank
+
+    def invest_amt(self, init_invest: float):
+        self.invest_funds = init_invest
 
     def take_profit(self, profit_value):
         if profit_value > 0.0:
