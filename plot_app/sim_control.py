@@ -3,19 +3,24 @@ from user import User
 
 
 class Simulation_Controller:
-
     #  take user company stock symbol
     raw_stock = input("Enter your stock symbol. ")
     raw_bank = input("How much funds are in the bank? ")
     raw_invest_amt = input("How much are you investing? ")
     # validate against list
-    symbol_list = get_symbols_from_csv()
+    symbol_list = {}
     symbol = ''
     bank = 0.0
     invest_funds = 0.0
 
     if raw_stock in symbol_list:
         symbol = raw_stock
+
+    def __init__(self):
+        self.symbol_list = get_symbols_from_csv()
+
+
+
 
     # create new user
     user = User(bank, symbol)

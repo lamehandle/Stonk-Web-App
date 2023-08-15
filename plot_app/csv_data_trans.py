@@ -11,7 +11,10 @@ def get_symbols_from_csv():
         print(comp_raw)
         comp_sym = comp_raw.loc[:, ['Symbol', 'Name']]
         print(comp_sym)
+        new_file = open("stock_symbols.txt")
+        new_file.write(comp_sym)
+        new_file.close()
+
         return comp_sym
     else:
         print("File not found")
-
