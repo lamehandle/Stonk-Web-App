@@ -39,7 +39,7 @@ class Simulation_Controller:
             self.user["take_profit"] = 0.0
 
     # ask user to make trades,
-    #
+    # todo see stock_utils.py purchase_stocks()
     # cash out,
     #
     # or advance time
