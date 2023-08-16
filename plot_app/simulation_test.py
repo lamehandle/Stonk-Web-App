@@ -4,6 +4,7 @@ import numpy as np
 from datetime import date
 from company import retrieve_single_day
 import stock_utils as sf
+from sim_control import Simulation_Controller
 from user import User
 
 ################################################################################
@@ -20,6 +21,9 @@ symbol = 'AAPL'
 stop_loss = 0.0
 take_profit = 0.0
 stock_units = 0
+
+
+sim = Simulation_Controller()
 
 
 # create a main loop

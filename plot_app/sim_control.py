@@ -3,31 +3,33 @@ from user import User
 
 
 class Simulation_Controller:
-    #  take user company stock symbol
-    raw_stock = input("Enter your stock symbol. ")
-    raw_bank = input("How much funds are in the bank? ")
-    raw_invest_amt = input("How much are you investing? ")
-
-    # validate against list
-    symbol_list = {}
-    symbol = ''
-    bank = 0.0
-    invest_funds = 0.0
-
-    if raw_stock in symbol_list:
-        symbol = raw_stock
+    # validate before the simulation gets the data.
+    user = {
+        "symbol" : "",
+        "symbol_list" : {},
+        "bank" : 0.0,
+        "invest_amt" : 0.0,
+        "take_profit" : 0.0,
+        "stop_loss" : 0.0,
+    }
 
     def __init__(self):
-        self.symbol_list = get_symbols_from_csv()
-
-
-
+       self.create_user()
 
     # create new user
-    user = User(bank, symbol)
+    def create_user(self):
+        user = User(self.user["bank"], self.user["symbol"])
+        return user
 
-    #  retreive initial history
-    user.retrieve_single_day()
-    # prompt user for stop loss... y/n?
+    def stop_loss(self):
+        set_stop_loss = float(input("Do you want to set a Stop Loss amount?"))
+        if set_stop_loss:
+            self.user["stop_loss"] = set_stop_loss
+    #  get take profit
+    def take_profit(self):
+        set_take_profit = float(input("Do you wish to set a Take Profit Order?"))
+        if set_take_profit:
+            self.user["take_profit"]
+    #  advance time
 
-#
+    # continue loop
