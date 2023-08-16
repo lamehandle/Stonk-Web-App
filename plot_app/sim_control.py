@@ -14,7 +14,7 @@ class Simulation_Controller:
     }
 
     def __init__(self):
-       self.create_user()
+        self.create_user()
 
     # create new user
     def create_user(self):
@@ -22,14 +22,29 @@ class Simulation_Controller:
         return user
 
     def stop_loss(self):
-        set_stop_loss = float(input("Do you want to set a Stop Loss amount?"))
-        if set_stop_loss:
+        stop_loss_flag = input("Do you want to set a Stop Loss amount?")
+        if stop_loss_flag == "Y":
+            set_stop_loss = float(input("Enter Stop Loss dollar amount: $ "))
             self.user["stop_loss"] = set_stop_loss
+        else:
+            self.user["stop_loss"] = 0.0
+
     #  get take profit
     def take_profit(self):
-        set_take_profit = float(input("Do you wish to set a Take Profit Order?"))
-        if set_take_profit:
-            self.user["take_profit"]
-    #  advance time
+        take_profit_flag = input("Do you wish to set a Take Profit Order?")
+        if take_profit_flag == "Y":
+            set_stop_loss = float(input("Enter Take Profit dollar amount: $ "))
+            self.user["take_profit"] = set_stop_loss
+        else:
+            self.user["take_profit"] = 0.0
+
+
+
+    # ask user to make trades,
+    #
+    # cash out,
+    #
+    # or advance time
+
 
     # continue loop
