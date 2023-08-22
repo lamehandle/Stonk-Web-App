@@ -7,6 +7,7 @@ class Simulation_Controller:
     user = {
         "symbol": "",
         "symbol_list": {},
+
         "bank": 0.0,
         "invest_amt": 0.0,
         "take_profit": 0.0,
@@ -14,11 +15,11 @@ class Simulation_Controller:
     }
 
     def __init__(self):
-        self.create_user()
+        self.create_position()
 
-    # create new user
-    def create_user(self):
-        user = User(self.user["bank"], self.user["symbol"])
+    # create new user  todo refactor to use position/ balance
+    def create_position(self):
+        user = position(self.user["symbol"])
         return user
 
     def stop_loss(self):
@@ -43,6 +44,5 @@ class Simulation_Controller:
     # cash out,
     #
     # or advance time
-
-
+    #
     # continue loop
