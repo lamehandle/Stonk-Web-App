@@ -2,32 +2,31 @@
 
 class Balance:
     bank = 0.0
-    invest_funds = 0.0
+    invest_amt = 0.0
     stock_units = 0
     errors = {}
 
-    def __init__(self):
-        self.bank_amt()
-        self.invest_amt()
+    def __init__(self, bank, invest):
+        self.bank = bank
+        self.invest_amt = invest
 
     def bank_amt(self):
-        self.bank = float(input("How much are you starting with in the bank? $ "))
+        return self.bank
 
-    def invest_amt(self):
-        self.invest_funds = float(input("How much are you investing in this stock? $ "))
-        self.purchase_stocks()
+    def invest(self):
+        return self.invest_amt
 
-    def purchase_stocks(self):
-        if self.invest_funds <= self.bank:
-            stock_units = self.invest_funds // self.comp_hist_df["Open"].loc[0]
+    def purchase_stocks(self, position):
+        if self.invest_amt <= self.bank:
+            self.stock_units = self.invest_amt // position.comp_hist_df["Open"].loc[0]
             # print(str(stock_units) + ' units.')
-            cost = stock_units * self.comp_hist_df["Open"].loc[0]
+            cost = self.stock_units * position["Open"].loc[0]
             # print('$' + str(cost))
             self.bank = (self.bank - cost)
             # print('$' + str(bank) + 'mid-func')
-            remaining = self.invest_funds - cost
+            remaining = self.invest_amt - cost
         else:
-            self.errors = {"fund": "Not enough funds!"}
+            self.errors = {"funds": "Not enough funds!"}
 
 
 

@@ -1,11 +1,5 @@
-import yfinance as yf
-import pandas as pd
-import numpy as np
-from datetime import date
-from company import retrieve_single_day
-import stock_utils as sf
 from sim_control import Sim_Ctrl
-from user import User
+
 
 ################################################################################
 # from front-end grab user data
@@ -15,19 +9,22 @@ from user import User
 # further the simulation needs to start with an amount of money
 # Allow purchasing of stocks based on current Open price.
 
-user_data = {
+data = {
     "symbol": 'AAPL',
-    "symbol_list": {},
+    "symbol_list": {"Apple": 'AAPL', },
     "stock_units": 0,
-    "bank": 0.0,
-    "invest_amt": 0.0,
-    "take_profit": 0.0,
-    "stop_loss": 0.0,
+    "bank": 100000.00,
+    "invest_amt": 2000.00,
+    "take_profit": 200.00,
+    "stop_loss": 100.00,
 }
 
 
 # create a main loop
 sim = Sim_Ctrl()
+balance = sim.balance(data['bank'], data['invest_amt'])
+position = sim.position(data['symbol'])
+
 
 #
 # # stop loss order logic

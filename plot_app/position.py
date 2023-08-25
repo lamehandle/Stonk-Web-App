@@ -9,8 +9,8 @@ class Position:
     stop_loss = 0.0
     errors = {}
 
-    def __init__(self):
-        self.symbol = input("Enter the company symbol ")
+    def __init__(self, symbol):
+        self.symbol = symbol
         self.retrieve_single_day()
 
     def retrieve_single_day(self):
