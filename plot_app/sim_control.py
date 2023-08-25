@@ -1,26 +1,22 @@
 from csv_data_trans import get_symbols_from_csv
-from user import User
+from position import Position
+from balance import Balance
 
 
-class Simulation_Controller:
-    # validate before the simulation gets the data.
-    user = {
-        "symbol": "",
-        "symbol_list": {},
-
-        "bank": 0.0,
-        "invest_amt": 0.0,
-        "take_profit": 0.0,
-        "stop_loss": 0.0,
-    }
+class Sim_Ctrl:
+    #  validate before the simulation gets the data.
+    position = None
+    balance = None
 
     def __init__(self):
         self.create_position()
+        self.create_balance()
 
-    # create new user  todo refactor to use position/ balance
     def create_position(self):
-        user = position(self.user["symbol"])
-        return user
+        self.position = Position().retrieve_single_day()
+
+    def create_balance(self):
+        self.balance = Balance()
 
     def stop_loss(self):
         stop_loss_flag = input("Do you want to set a Stop Loss amount? Y/N").upper()
