@@ -26,7 +26,10 @@ data = {
 balance = Balance(data['bank'], data['invest_amt'])
 position = Position(data['symbol'])
 
-
+print(balance.bank_amt())
+print("<=================>")
+print(position.comp_hist_df)
+print(balance.purchase_stocks(position.comp_hist_df))
 #
 # # stop loss order logic
 # print("do you want to set a Stop Loss Order? ")
