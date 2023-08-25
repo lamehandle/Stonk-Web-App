@@ -1,5 +1,6 @@
 from sim_control import Sim_Ctrl
-
+from balance import Balance
+from position import Position
 
 ################################################################################
 # from front-end grab user data
@@ -21,9 +22,9 @@ data = {
 
 
 # create a main loop
-sim = Sim_Ctrl()
-balance = sim.balance(data['bank'], data['invest_amt'])
-position = sim.position(data['symbol'])
+# sim = Sim_Ctrl()
+balance = Balance(data['bank'], data['invest_amt'])
+position = Position(data['symbol'])
 
 
 #
