@@ -24,15 +24,16 @@ data = {
 # create a main loop
 # sim = Sim_Ctrl()
 position = Position(data['symbol'])
-profit = Position.take_profit(data["take_profit"])
-stop_loss = Position.stop_loss(data["stop_loss"])
+profit = position.take_profit_value(data["take_profit"])
+stop_loss = position.stop_loss_value(data["stop_loss"])
+
 balance = Balance(data['bank'], data['invest_amt'])
 balance.invest(data['invest_amt'])
 
 
 print('$' + str(balance.bank_amt()))
 print("<=================>")
-print(position.comp_hist_df)
+print(position.history)
 print("<=================>")
 
 
