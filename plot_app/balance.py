@@ -13,12 +13,12 @@ class Balance:
     def bank_amt(self):
         return self.bank
 
-    def invest(self):
-        return self.invest_amt
+    def invest(self, invest):
+        self.invest_amt = invest
 
     def purchase_stocks(self, position):
         if self.invest_amt <= self.bank:
-            self.stock_units = self.invest_amt // position.comp_hist_df["Open"].loc[0]
+            self.stock_units = self.invest_amt // position["Open"].loc[0]
             # print(str(stock_units) + ' units.')
             cost = self.stock_units * position["Open"].loc[0]
             # print('$' + str(cost))

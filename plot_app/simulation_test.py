@@ -23,14 +23,19 @@ data = {
 
 # create a main loop
 # sim = Sim_Ctrl()
-balance = Balance(data['bank'], data['invest_amt'])
 position = Position(data['symbol'])
+profit = Position.take_profit(data["take_profit"])
+stop_loss = Position.stop_loss(data["stop_loss"])
+balance = Balance(data['bank'], data['invest_amt'])
+balance.invest(data['invest_amt'])
 
-print(balance.bank_amt())
+
+print('$' + str(balance.bank_amt()))
 print("<=================>")
 print(position.comp_hist_df)
-print(balance.purchase_stocks(position.comp_hist_df))
-#
+print("<=================>")
+
+
 # # stop loss order logic
 # print("do you want to set a Stop Loss Order? ")
 # user.stop_loss = float(input("Set your Stop Loss Order amount: $ "))
