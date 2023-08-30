@@ -25,6 +25,7 @@ class Balance:
             self.bank = (self.bank - cost)
             # print('$' + str(bank) + 'mid-func')
             remaining = self.invest_amt - cost
+
         else:
             self.errors = {"funds": "Not enough funds!"}
 

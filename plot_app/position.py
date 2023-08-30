@@ -25,7 +25,8 @@ class Position:
 
     def stop_loss(self, loss_value):
         if loss_value >= 0.0:
-            self.stop_loss_value = loss_value
+            self.stop_loss_value = loss_valu
+
 
     def advance_time(self):
         original_date = self.history["Date"]
