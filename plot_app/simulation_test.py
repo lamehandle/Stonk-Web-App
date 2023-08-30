@@ -24,8 +24,8 @@ data = {
 # create a main loop
 # sim = Sim_Ctrl()
 position = Position(data['symbol'])
-profit = position.take_profit_value(data["take_profit"])
-stop_loss = position.stop_loss_value(data["stop_loss"])
+profit = position.take_profit(data["take_profit"])
+stop_loss = position.stop_loss(data["stop_loss"])
 
 balance = Balance(data['bank'], data['invest_amt'])
 balance.invest(data['invest_amt'])
@@ -35,20 +35,16 @@ print('$' + str(balance.bank_amt()))
 print("<=================>")
 print(position.history)
 print("<=================>")
-
+balance.purchase_stocks(position.history)
 
 # # stop loss order logic
-# print("do you want to set a Stop Loss Order? ")
-# user.stop_loss = float(input("Set your Stop Loss Order amount: $ "))
-#
+
+
 # # # take profit order logic
-# print("do you want to set a Take Profit Order? ")
-# user.take_profit = float(input("Set your Take Profit Order amount: $ "))
-#
+
 # # advance the loop 1 day
-# user.advance_time()
-# # works
-#
+
+
 # # on each round of the simulation add or subtract funds based on the bets.
 # # add or subtract value of the match from bank.
 #
