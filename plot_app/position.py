@@ -31,4 +31,5 @@ class Position:
         original_date = self.history["Date"]
         add_day = original_date + pd.Timedelta(days=1)
         print(add_day)
-        return add_day
+        self.history["Date"] = add_day
+        return self.history

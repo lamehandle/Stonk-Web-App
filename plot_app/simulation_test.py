@@ -41,15 +41,15 @@ balance.purchase_stocks(position.history)
 print(balance.stock_units)
 
 # advance the loop 1 day
-adv_day = position.advance_time()  # todo refactor advance_time() to return a new position obj.
+position.advance_time()
 print(position.history)
-print(position.retrieve_single_day())
 
 # # on each round of the simulation add or subtract funds based on the bets.
+
 # # add or subtract value of the match from bank.
 #
-# #  todo Plot ticker history
-# # todo plot take profit/stop loss on top of plot to show where those amounts land.
+# todo Plot ticker history
+# todo plot take profit/stop loss on top of plot to show where those amounts land.
 
 
 
