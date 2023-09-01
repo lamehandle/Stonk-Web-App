@@ -1,4 +1,3 @@
-from sim_control import Sim_Ctrl
 from balance import Balance
 from position import Position
 
