@@ -1,6 +1,6 @@
 import pandas as pd
 import yfinance as yf
-
+import pandas as pd
 
 class Position:
     symbol = ""
@@ -8,6 +8,7 @@ class Position:
     take_profit_value = 0.0
     stop_loss_value = 0.0
     errors = {}
+    position_series = {}
 
     def __init__(self, symbol):
         self.symbol = symbol
@@ -18,6 +19,7 @@ class Position:
         comp_hist = company.history(period='1d')
         comp_hist_df = pd.DataFrame(comp_hist).reset_index()
         self.history = comp_hist_df
+        self.position_series = self.history
 
     def take_profit(self, profit_value):
         if profit_value > 0.0:
@@ -29,7 +31,15 @@ class Position:
 
     def advance_time(self):
         original_date = self.history["Date"]
-        add_day = original_date + pd.Timedelta(days=1)
-        print(add_day)
-        self.history["Date"] = add_day
+        next_day = original_date + pd.Timedelta(days=1)
+        print(next_day)
+
+        company = yf.Ticker(self.symbol)
+        comp_hist = company.history(start=next_day, end=next_day)
+        comp_hist_df = pd.DataFrame(comp_hist).reset_index()
+        self.history = comp_hist_df
+        self.position_series = self.history
+        # todo this is changing the date rather than pulling new data
+        # todo refactor to call retrieve single day again with the new date
+        self.position_series = pd.concat([self.position_series, self.history], ignore_index=True)
         return self.history

@@ -17,12 +17,15 @@ data = {
     "invest_amt": 2000.00,
     "take_profit": 200.00,
     "stop_loss": 100.00,
+
 }
 
 
 # create a main loop
 # sim = Sim_Ctrl()
 position = Position(data['symbol'])
+
+print(position.position_series)
 # take profit order
 profit = position.take_profit(data["take_profit"])
 # # stop loss order
@@ -41,7 +44,8 @@ print(balance.stock_units)
 
 # advance the loop 1 day
 position.advance_time()
-print(position.history)
+print(position.position_series)
+
 
 # # on each round of the simulation add or subtract funds based on the bets.
 
