@@ -35,7 +35,7 @@ class Position:
         print(next_day)
 
         company = yf.Ticker(self.symbol)
-        comp_hist = company.history(start=next_day, end=next_day)
+        comp_hist = company.history(start=original_date, end=next_day)
         comp_hist_df = pd.DataFrame(comp_hist).reset_index()
         self.history = comp_hist_df
         self.position_series = self.history
