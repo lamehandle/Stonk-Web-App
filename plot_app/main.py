@@ -8,7 +8,7 @@ from position import Position
 
 # further the simulation needs to start with an amount of money
 # Allow purchasing of stocks based on current Open price.
-
+# dummy data
 data = {
     "symbol": 'AAPL',
     "symbol_list": {"Apple": 'AAPL', },
