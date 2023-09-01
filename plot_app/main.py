@@ -50,7 +50,7 @@ print(position.history)
 # todo Plot ticker history
 # todo plot take profit/stop loss on top of plot to show where those amounts land.
 
-
+# todo .concat() dataframes as time is advanced to plot as time is advanced.
 
 # Chart main stock data
 # x-axis should be the date labeled.
