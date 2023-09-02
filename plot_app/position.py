@@ -36,12 +36,14 @@ class Position:
     def advance_time(self):
         # Take original Datetime from
         original_date = self.history["Date"].iloc[0]
+        current_datetime = datetime.strptime(str(original_date), "%Y-%m-%d %H:%M:%S%z")
         print("<========= v Original Date v ========>")
         print(original_date)
 
-        next_day = (original_date + timedelta(days=1)).strftime("%Y-%m-%d")
+        next_day = (current_datetime + timedelta(days=1))
         # todo fix not advancing a day!
         # need to convert this to an acceptable datetime string
+
         print("<========= v New Date v ========>")
         print(next_day)
 
@@ -54,7 +56,7 @@ class Position:
         print("<========= v New History v ========>")
         print(new_hist)
         # print(hist_df)
-        self.position_series = pd.concat([self.history, new_hist], axis="rows")
+        self.position_series = pd.concat([self.history, new_hist], axis="rows", ignore_index=True)
         # , axis = "columns"
         print(self.position_series)
         # comp_hist_df = pd.DataFrame(new_hist).reset_index()
