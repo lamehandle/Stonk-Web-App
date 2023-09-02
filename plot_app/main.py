@@ -25,7 +25,7 @@ data = {
 # sim = Sim_Ctrl()
 position = Position(data['symbol'])
 
-print(position.position_series)
+# print(position.position_series)
 # take profit order
 profit = position.take_profit(data["take_profit"])
 # # stop loss order
@@ -34,17 +34,19 @@ stop_loss = position.stop_loss(data["stop_loss"])
 balance = Balance(data['bank'], data['invest_amt'])
 balance.invest(data['invest_amt'])
 
-
-print('$' + str(balance.bank_amt()))
+print("<========Sim Start=========>")
+print('Total Bank Amount: $' + str(balance.bank_amt()))
 print("<=================>")
-print(position.history)
-print("<=================>")
+# print(position.history)
+# print("<=================>")
 balance.purchase_stocks(position.history)
-print(balance.stock_units)
 
+print("Total units purchased: " + str(balance.stock_units) + " units of " + str(position.symbol))
+print("<=================>")
+print("<========= Advance the Sim 1 Day ========>")
 # advance the loop 1 day
-position.advance_time()
-print(position.position_series)
+adv_time = position.advance_time()
+
 
 
 # # on each round of the simulation add or subtract funds based on the bets.

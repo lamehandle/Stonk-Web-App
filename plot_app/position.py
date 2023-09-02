@@ -1,6 +1,10 @@
 import pandas as pd
 import yfinance as yf
 import pandas as pd
+import datetime
+from datetime import timedelta, datetime
+from dateutil.relativedelta import relativedelta
+
 
 class Position:
     symbol = ""
@@ -8,17 +12,17 @@ class Position:
     take_profit_value = 0.0
     stop_loss_value = 0.0
     errors = {}
-    position_series = {}
+    position_series = None
+    period = '1d'
 
     def __init__(self, symbol):
         self.symbol = symbol
-        self.retrieve_single_day()
+        self.retrieve_single_day(symbol)
 
-    def retrieve_single_day(self):
-        company = yf.Ticker(self.symbol)
-        comp_hist = company.history(period='1d')
-        comp_hist_df = pd.DataFrame(comp_hist).reset_index()
-        self.history = comp_hist_df
+    def retrieve_single_day(self, symbol):
+        hist = yf.Ticker(symbol).history(self.period)
+        hist_df = pd.DataFrame(hist).reset_index()
+        self.history = hist_df
         self.position_series = self.history
 
     def take_profit(self, profit_value):
@@ -30,16 +34,33 @@ class Position:
             self.stop_loss_value = loss_value
 
     def advance_time(self):
-        original_date = self.history["Date"]
-        next_day = original_date + pd.Timedelta(days=1)
+        # Take original Datetime from
+        original_date = self.history["Date"].iloc[0]
+        print("<========= v Original Date v ========>")
+        print(original_date)
+
+        next_day = (original_date + timedelta(days=1)).strftime("%Y-%m-%d")
+        # todo fix not advancing a day!
+        # need to convert this to an acceptable datetime string
+        print("<========= v New Date v ========>")
         print(next_day)
 
-        company = yf.Ticker(self.symbol)
-        comp_hist = company.history(start=original_date, end=next_day)
-        comp_hist_df = pd.DataFrame(comp_hist).reset_index()
-        self.history = comp_hist_df
-        self.position_series = self.history
-        # todo this is changing the date rather than pulling new data
-        # todo refactor to call retrieve single day again with the new date
-        self.position_series = pd.concat([self.position_series, self.history], ignore_index=True)
-        return self.history
+        print("<========= v Original History v ========>")
+        print(self.history)
+
+        new_hist = yf.Ticker(self.symbol).history(start=next_day).reset_index()
+        # think I need to format the dates
+        # hist_df = pd.DataFrame(new_hist).reset_index()
+        print("<========= v New History v ========>")
+        print(new_hist)
+        # print(hist_df)
+        self.position_series = pd.concat([self.history, new_hist], axis="rows")
+        # , axis = "columns"
+        print(self.position_series)
+        # comp_hist_df = pd.DataFrame(new_hist).reset_index()
+        # self.history = comp_hist_df
+        # self.position_series = self.history
+        # # todo this is changing the date rather than pulling new data
+        # # todo refactor to call retrieve single day again with the new date
+        # self.position_series = pd.concat([self.position_series, self.history], ignore_index=True)
+        # return self.position_series.all()
