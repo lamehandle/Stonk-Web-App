@@ -55,14 +55,16 @@ class Position:
 
         # print("<========= v Original History v ========>")
         # print(self.history)
+
         # todo this is not pulling the next day, why?   --------------------vvvv
-        new_hist = yf.Ticker(self.symbol).history(start=original_date, end=next_day).reset_index()
+        new_hist = yf.Ticker(self.symbol).history(start=next_day, end=next_day).reset_index()
         # think I need to format the dates
 
         print("<========= v New History v ========>")
         print(new_hist)
         # print(hist_df)
-        self.position_series = pd.concat([self.history.iloc[0], new_hist], ignore_index=True)
+
+        self.position_series = pd.concat([new_hist, self.history.iloc[0]], axis='index', join='outer')
         # , axis = "columns"
         print("<========= v Position Series v ========>")
         print(self.position_series)
