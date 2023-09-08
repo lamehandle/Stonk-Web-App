@@ -13,7 +13,7 @@ class Position:
     stop_loss_value = 0.0
     errors = {}
     position_time_series = None
-    period = '3y'
+    period = '2mo'
     single_day = None
 
     def __init__(self, symbol):
@@ -41,24 +41,19 @@ class Position:
     def advance_time(self):
         print("<========= v Original History v ========>")
         print(self.history)
-        # | Parameter         | 	Description  |	                     |       Default 	                |           Valid values
-        # |start: str, dt, int|     |   Range   |   start, inclusive    |   99 years ago( if period = None) |   'YYYY-MM-DD', datetime, or epoch   |
+
         # Take original Datetime from
         original_date = self.history["Date"].iloc[0]
-        # current_datetime = datetime.strptime(str(original_date), "%Y-%m-%d %H:%M:%S%z")
+
         print("<========= v Original Date v ========>")
         print(original_date)
 
-
         next_day = (self.history["Date"].iloc[0] + timedelta(days=2))
-        # | Parameter         | 	Description  |	                     |       Default 	                |           Valid values
-        # |end: str, dt, int |  Range           |    end, exclusive     |   now( if period = None)          |   'YYYY-MM-DD', datetime, or epoch   |
-
-
 
         print("<========= v New Date v ========>")
         print(next_day)
-
+        #                                                          start is inclusive;   end is exclusive.
+        #                                                                     |             |
         self.position_time_series = yf.Ticker(self.symbol).history(start=original_date, end=next_day,
                                                                    prepost=True).reset_index()
         # , axis = "columns", axis='index', join='outer'

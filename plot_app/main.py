@@ -1,6 +1,6 @@
 from balance import Balance
 from position import Position
-
+from plot import Plot
 ################################################################################
 # from front-end grab user data
 # allow drop down and text entry,
@@ -42,14 +42,20 @@ print("<=================>")
 balance.purchase_stocks(position.history)
 
 print("Total units purchased: " + str(balance.stock_units) + " units of " + str(position.symbol))
-print("<=================>")
+# print("<=================>")
 print("<========= v Remaining balance v ========>")
 print("$" + str(balance.bank_amt()))
-print("<========= Advance the Sim 1 Day ========>")
+
 # advance the loop 1 day
+print("<========= Advance the Sim 1 Day ========>")
 adv_time = position.advance_time()
 
+print("<========= Plot History ========>")
+plot = Plot(position)
+plot.plot_history()
 
+print("<========= Plot Position ========>")
+plot.plot_position()
 
 # # on each round of the simulation add or subtract funds based on the bets.
 
