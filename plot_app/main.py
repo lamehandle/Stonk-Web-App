@@ -13,7 +13,7 @@ data = {
     "symbol": 'AAPL',
     "symbol_list": {"Apple": 'AAPL', },
     "stock_units": 0,
-    "bank": 100000.00,
+    "bank": 10000.00,
     "invest_amt": 2000.00,
     "take_profit": 200.00,
     "stop_loss": 100.00,
@@ -43,6 +43,8 @@ balance.purchase_stocks(position.history)
 
 print("Total units purchased: " + str(balance.stock_units) + " units of " + str(position.symbol))
 print("<=================>")
+print("<========= v Remaining balance v ========>")
+print("$" + str(balance.bank_amt()))
 print("<========= Advance the Sim 1 Day ========>")
 # advance the loop 1 day
 adv_time = position.advance_time()
