@@ -3,7 +3,6 @@ import yfinance as yf
 import pandas as pd
 import datetime
 from datetime import timedelta, datetime
-from dateutil.relativedelta import relativedelta
 
 
 class Position:
@@ -42,7 +41,7 @@ class Position:
         print("<========= v Original History v ========>")
         print(self.history)
 
-        # Take original Datetime from
+        # Take original Datetime from history
         original_date = self.history["Date"].iloc[0]
 
         print("<========= v Original Date v ========>")
@@ -56,6 +55,6 @@ class Position:
         #                                                                     |             |
         self.position_time_series = yf.Ticker(self.symbol).history(start=original_date, end=next_day,
                                                                    prepost=True).reset_index()
-        # , axis = "columns", axis='index', join='outer'
+
         print("<========= v Position Series v ========>")
         print(self.position_time_series)
