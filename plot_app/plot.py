@@ -38,25 +38,15 @@ class Plot:
     def plot_position(self):
         if self.pos is not None:
             print("<======== Position data! =========>")
-            fig = go.Figure(
-                data=[
-                    go.Candlestick(
-                        x=self.hist['Date'],
-                        open=self.open,
-                        high=self.high,
-                        low=self.low,
-                        close=self.close
 
-                    ),
-                    go.Candlestick(
-                        x=self.pos['Date'],
-                        open=self.pos['Open'],
-                        high=self.pos['High'],
-                        low=self.pos['Low'],
-                        close=self.pos['Close']
-                    )
-                ]
-            )
+            fig = go.Figure(data=[go.Candlestick(x=self.pos['Date'],
+                                                 open=self.pos['Open'],
+                                                 high=self.pos['High'],
+                                                 low=self.pos['Low'],
+                                                 close=self.pos['Close'])])
+            fig.update_layout(xaxis_rangeslider_visible=False)
+
+
             return fig.show()
         else:
             return print("<======== No Position data! =========>")
