@@ -38,8 +38,8 @@ class Plot:
                                 high=self.pos['High'],
                                 low=self.pos['Low'],
                                 close=self.pos['Close'])
-            fig.add_scatter()
-            fig.add_trace()
+            # fig.add_scatter()
+            # fig.add_trace()
 
             return fig.show()
         else:

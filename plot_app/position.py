@@ -37,12 +37,16 @@ class Position:
         if loss_value >= 0.0:
             self.stop_loss_value = loss_value
 
-    def advance_time(self):
-        print("<========= v Original History v ========>")
-        print(self.history)
+    def advance_time(self, date=None):
+        # print("<========= v Original History v ========>")
+        # print(self.history)
 
         # Take original Datetime from history
-        original_date = self.history["Date"].iloc[0]
+        if date is not None:
+            #  todo need to set up so that after the first iteration it uses the time series to calculate original date.
+            original_date = self.position_time_series[-1]
+        else:
+            original_date = self.history["Date"].iloc[0]
 
         print("<========= v Original Date v ========>")
         print(original_date)
