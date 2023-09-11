@@ -44,7 +44,7 @@ class Plot:
                                                  high=self.pos['High'],
                                                  low=self.pos['Low'],
                                                  close=self.pos['Close'])])
-
+            fig.update_layout(xaxis_rangeslider_visible=False)
             return fig.show()
         else:
             return print("<======== No Position data! =========>")
