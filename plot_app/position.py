@@ -12,8 +12,8 @@ class Position:
     take_profit_value = 0.0
     stop_loss_value = 0.0
     errors = {}
-    position_time_series = None
-    period = '2mo'
+    position_series = None
+    period = '3y'
     single_day = None
 
     def __init__(self, symbol):
@@ -24,7 +24,7 @@ class Position:
         hist = yf.Ticker(symbol).history(self.period)
         hist_df = pd.DataFrame(hist).reset_index()
         self.history = hist_df
-        self.position_time_series = self.history
+        self.position_series = self.history
         self.strip_first_day()
 
     def strip_first_day(self):
@@ -39,9 +39,6 @@ class Position:
             self.stop_loss_value = loss_value
 
     def advance_time(self):
-        print("<========= v Original History v ========>")
-        print(self.history)
-
         # Take original Datetime from
         original_date = self.history["Date"].iloc[0]
 
@@ -50,12 +47,10 @@ class Position:
 
         next_day = (self.history["Date"].iloc[0] + timedelta(days=2))
 
-        print("<========= v New Date v ========>")
+        print("<========= v New Date + 1 Day v ========>")
         print(next_day)
-        #                                                          start is inclusive;   end is exclusive.
-        #                                                                     |             |
-        self.position_time_series = yf.Ticker(self.symbol).history(start=original_date, end=next_day,
-                                                                   prepost=True).reset_index()
-        # , axis = "columns", axis='index', join='outer'
+
+        self.position_series = yf.Ticker(self.symbol).history(start=original_date, end=next_day).reset_index()
+
         print("<========= v Position Series v ========>")
-        print(self.position_time_series)
+        print(self.position_series)

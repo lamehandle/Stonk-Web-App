@@ -35,36 +35,30 @@ balance = Balance(data['bank'], data['invest_amt'])
 balance.invest(data['invest_amt'])
 
 print("<========Sim Start=========>")
-print('Total Bank Amount: $' + str(balance.bank_amt()))
+print('<======== Total Bank Amount: ========>$')
+print('             $ ' + str(balance.bank_amt()))
 print("<=================>")
 # print(position.history)
 # print("<=================>")
 balance.purchase_stocks(position.history)
 
 print("Total units purchased: " + str(balance.stock_units) + " units of " + str(position.symbol))
-# print("<=================>")
-print("<========= v Remaining balance v ========>")
-print("$" + str(balance.bank_amt()))
-
-# advance the loop 1 day
+print("<=================>")
+print('<======== Remaining Bank Amount: ========>')
+print('             $ ' + str(balance.bank_amt()))
 print("<========= Advance the Sim 1 Day ========>")
-adv_time = position.advance_time()
+# advance the loop 1 day
+position.advance_time()
 
-print("<========= Plot History ========>")
-plot = Plot(position)
-plot.plot_history()
-
-print("<========= Plot Position ========>")
-plot.plot_position()
-
+plot = Plot(position).plot_position()
 # # on each round of the simulation add or subtract funds based on the bets.
 
+print(plot)
 # # add or subtract value of the match from bank.
 #
 # todo Plot ticker history
 # todo plot take profit/stop loss on top of plot to show where those amounts land.
 
-# todo .concat() dataframes as time is advanced to plot as time is advanced.
 
 # Chart main stock data
 # x-axis should be the date labeled.
