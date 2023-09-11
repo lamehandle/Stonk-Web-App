@@ -6,7 +6,9 @@ from position import Position as pos
 
 
 class Plot:
-    # dataframe for plotting
+    # Plot
+
+
     hist = None
     pos = None
     open = None
