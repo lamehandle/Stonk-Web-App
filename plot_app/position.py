@@ -41,17 +41,16 @@ class Position:
     def advance_time(self):
         # Take original Datetime from
         original_date = self.history["Date"].iloc[0]
-        # current_datetime = datetime.strptime(str(original_date), "%Y-%m-%d %H:%M:%S%z")
+
         print("<========= v Original Date v ========>")
         print(original_date)
 
-        # next_day = self.history["Date"].iloc[0]
         next_day = (self.history["Date"].iloc[0] + timedelta(days=2))
 
         print("<========= v New Date + 1 Day v ========>")
         print(next_day)
 
         self.position_series = yf.Ticker(self.symbol).history(start=original_date, end=next_day).reset_index()
-        # , axis = "columns"
+
         print("<========= v Position Series v ========>")
         print(self.position_series)
