@@ -50,10 +50,13 @@ print("<========= Advancing the Sim 1 Day ========>")
 # advance the loop 1 day
 position.advance_time()
 
-plot = Plot(position).plot_position()
+plot = Plot(position)
 # # on each round of the simulation add or subtract funds based on the bets.
 
-print(plot)
+plot.plot_history()
+
+position.advance_time()
+
 # # add or subtract value of the match from bank.
 #
 # todo Plot ticker history
