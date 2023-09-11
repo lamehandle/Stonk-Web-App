@@ -46,7 +46,7 @@ print("Total units purchased: " + str(balance.stock_units) + " units of " + str(
 print("<=================>")
 print('<======== Remaining Bank Amount: ========>')
 print('             $ ' + str(balance.bank_amt()))
-print("<========= Advance the Sim 1 Day ========>")
+print("<========= Advancing the Sim 1 Day ========>")
 # advance the loop 1 day
 position.advance_time()
 
