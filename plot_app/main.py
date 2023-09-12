@@ -53,7 +53,7 @@ position.advance_time()
 plot = Plot(position)
 # # on each round of the simulation add or subtract funds based on the bets.
 
-plot.plot_history()
+# plot.plot_history()
 print("Advancing time 2")
 position.advance_time()
 

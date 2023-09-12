@@ -8,7 +8,6 @@ from position import Position as pos
 class Plot:
     # Plot
 
-
     hist = None
     pos = None
     open = None

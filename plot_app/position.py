@@ -1,8 +1,6 @@
 import pandas as pd
 import yfinance as yf
-import pandas as pd
-import datetime
-from datetime import timedelta, datetime
+from datetime import timedelta
 
 
 class Position:
@@ -39,27 +37,27 @@ class Position:
         if loss_value >= 0.0:
             self.stop_loss_value = loss_value
 
-    def advance_time(self, date=None):
+    def advance_time(self):
         # print("<========= v Original History v ========>")
         # print(self.history)
 
         # Take original Datetime from history
-        if date is not None:
+        if self.original_date is not None:
             #  todo need to set up so that after the first iteration it uses the time series to calculate original date.
-            original_date = self.position_time_series[-1]
+            self.original_date = self.position_time_series['Date'].tail(1)
         else:
-            original_date = self.history["Date"].iloc[0]
+            self.original_date = self.history["Date"].iloc[0]
 
         print("<========= v Original Date v ========>")
-        print(original_date)
+        print(self.original_date)
 
-        next_day = (self.history["Date"].iloc[0] + timedelta(days=2))
+        self.next_day = self.original_date + timedelta(days=2)
 
         print("<========= v New Date v ========>")
-        print(next_day)
+        print(self.next_day)
         #                                                          start is inclusive;   end is exclusive.
         #                                                                     |             |
-        self.position_time_series = yf.Ticker(self.symbol).history(start=original_date, end=next_day,
+        self.position_time_series = yf.Ticker(self.symbol).history(start=self.original_date, end=self.next_day,
                                                                    prepost=True).reset_index()
 
         print("<========= v Position Series v ========>")
