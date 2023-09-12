@@ -14,6 +14,8 @@ class Position:
     position_time_series = None
     period = '3mo'
     single_day = None
+    original_date = None
+    next_day = None
 
     def __init__(self, symbol):
         self.symbol = symbol
@@ -23,7 +25,7 @@ class Position:
         hist = yf.Ticker(symbol).history(self.period)
         hist_df = pd.DataFrame(hist).reset_index()
         self.history = hist_df
-        self.position_time_series = self.history
+        self.position_time_series = self.history.tail(1)
         self.strip_first_day()
 
     def strip_first_day(self):

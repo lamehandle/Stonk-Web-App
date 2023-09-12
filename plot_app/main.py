@@ -57,16 +57,6 @@ plot.plot_history()
 print("Advancing time 2")
 position.advance_time()
 
-# # add or subtract value of the match from bank.
-#
+
 # todo Plot ticker history
 # todo plot take profit/stop loss on top of plot to show where those amounts land.
-
-
-# Chart main stock data
-# x-axis should be the date labeled.
-# y-axis should be stock price. labeled.
-# removed slider from layout.
-# Chart filtered rows over original data.
-#
-
