@@ -44,9 +44,7 @@ class Position:
         # Take original Datetime from history
         # todo this if statement is not working as expected. I think I need to create a flag/counter to track days advanced and walk down the history dataframe
         if self.original_date is not None:
-            #  todo need to set up so that after the first iteration it uses the time series to calculate original date.
             original_date = self.original_date.head(1)
-
         else:
             original_date = self.history["Date"].head(1)
             self.original_date = original_date
@@ -58,8 +56,8 @@ class Position:
 
         print("<========= v New Date v ========>")
         print(next_day)
-        #                                          start is inclusive;   end is exclusive.
-        #                                                      |             |
+        #                                                 start is inclusive;   end is exclusive.
+        #                                                          |                    |
         new_range = yf.Ticker(self.symbol).history(start=original_date.iloc[0], end=next_day.iloc[0]).reset_index()
 
         self.position_history = new_range
