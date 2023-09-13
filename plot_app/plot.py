@@ -17,7 +17,7 @@ class Plot:
 
     def __init__(self, position):
         self.hist = position.history
-        self.pos = position.position_time_series
+        self.pos = position.position_history
 
         self.open = self.hist['Open']
         self.close = self.hist['Close']
