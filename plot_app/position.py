@@ -21,11 +21,15 @@ class Position:
         self.retrieve_history()
         self.retrieve_initial_day()
 
+    def __str__(self):
+        pass
+
     def retrieve_history(self):
         self.history = yf.Ticker(self.symbol).history(self.period).reset_index()
 
     def retrieve_initial_day(self):
-        self.initial_record = self.history.iloc[0]
+        self.initial_record = self.history.iloc[0, :]  # todo confirm that this is the frst row of the history dataframe
+    #                                           .iloc[rows, columns]
 
     def take_profit(self, profit_value):
         if profit_value > 0.0:
@@ -43,19 +47,10 @@ class Position:
             self.calc_date(self.index)
 
         print("<========= v New Date v ========>")
-        print(self.next_day)
-        #                                                 start is inclusive;   end is exclusive.
-        #                                                          |                    |
-        new_range = yf.Ticker(self.symbol).history(start=self.prev_date, end=self.next_day).reset_index()
-
-        self.position_history = new_range
-        print("<========= v Position Series v ========>")
-        print(self.position_history)
+        print(self.next_day.loc["Date"])
 
     def calc_date(self, index):
         print("<========= v Original Date v ========>")
-        print(self.initial_record.iloc[index]["Date"])
-
-        self.prev_date = self.initial_record.iloc[self.initial_record[index], self.initial_record["Date"]]
-        self.index = self.index + 1
-        self.next_day = self.initial_record["Date"].iloc[index]
+        print(self.initial_record["Date"])
+        self.index = self.index + 2
+        self.next_day = self.history.iloc[index]

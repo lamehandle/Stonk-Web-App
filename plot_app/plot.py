@@ -34,17 +34,30 @@ class Plot:
                                                  close=self.close)])
 
             fig.update_layout(xaxis_rangeslider_visible=False)
-            fig.add_candlestick(x=self.pos['Date'],
-                                open=self.pos['Open'],
-                                high=self.pos['High'],
-                                low=self.pos['Low'],
-                                close=self.pos['Close'])
-            # fig.add_scatter()
-            # fig.add_trace()
+            fig.add_scatter()
 
+            # fig.add_candlestick(x=self.pos['Date'],
+            #                     open=self.pos['Open'],
+            #                     high=self.pos['High'],
+            #                     low=self.pos['Low'],
+            #                     close=self.pos['Close'])
+            # fig.add_trace()
             return fig.show()
         else:
             return print("<======== No data! =========>")
+
+            # Low level example of a figure which is a dict
+            # fig = dict({
+            #     "data": [{"type": "bar",
+            #               "x": [1, 2, 3],
+            #               "y": [1, 3, 2]}],
+            #     "layout": {"title": {"text": "A Figure Specified By Python Dictionary"}}
+            # })
+            #
+            # # To display the figure defined by this dict, use the low-level plotly.io.show function
+            # import plotly.io as pio
+            #
+            # pio.show(fig)
 
     def plot_position(self):
         if self.pos is not None:
