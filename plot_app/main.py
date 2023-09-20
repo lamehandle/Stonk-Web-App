@@ -50,13 +50,8 @@ print("<========= Advancing the Sim 1 Day ========>")
 # advance the loop 1 day
 position.advance_time()
 
-plot = Plot(position)
+# plot = Plot(position) todo refactor plot to be in line with refactored Position class
 # # on each round of the simulation add or subtract funds based on the bets.
-
-# plot.plot_history()
-print("Advancing time 2")
-position.advance_time()
-
 
 # todo Plot ticker history
 # todo plot take profit/stop loss on top of plot to show where those amounts land.

@@ -1,33 +1,34 @@
 import pandas as pd
 import yfinance as yf
-from datetime import timedelta
+from datetime import timedelta, datetime
 
 
 class Position:
     symbol = ""
     history = None
+    period = '1mo'
+
+    index = 0
+    initial_record = None
+    prev_date= None
+    next_day = None
+
     take_profit_value = 0.0
     stop_loss_value = 0.0
-    errors = {}
-    position_time_series = None
-    period = '3mo'
-    single_day = None
-    original_date = None
-    next_day = None
 
     def __init__(self, symbol):
         self.symbol = symbol
-        self.retrieve_single_day(symbol)
+        self.retrieve_history()
+        self.retrieve_initial_day()
 
-    def retrieve_single_day(self, symbol):
-        hist = yf.Ticker(symbol).history(self.period)
-        hist_df = pd.DataFrame(hist).reset_index()
-        self.history = hist_df
-        self.position_time_series = self.history.tail(1)
-        self.strip_first_day()
+    def __str__(self):
+        pass
 
-    def strip_first_day(self):
-        self.single_day = self.history.iloc[0]
+    def retrieve_history(self):
+        self.history = yf.Ticker(self.symbol).history(self.period).reset_index()
+
+    def retrieve_initial_day(self):
+        self.initial_record = self.history.iloc[self.index]  # todo confirm that this is the frst row of the history dataframe
 
     def take_profit(self, profit_value):
         if profit_value > 0.0:
@@ -38,27 +39,17 @@ class Position:
             self.stop_loss_value = loss_value
 
     def advance_time(self):
-        # print("<========= v Original History v ========>")
-        # print(self.history)
+        print("<========= v History v ========>")
+        print(self.history)
+        # todo walk down the history dataframe one element at a time.
+        if self.initial_record is not None:
+            self.calc_date()
 
-        # Take original Datetime from history
-        if self.original_date is not None:
-            #  todo need to set up so that after the first iteration it uses the time series to calculate original date.
-            self.original_date = self.position_time_series['Date'].tail(1)
-        else:
-            self.original_date = self.history["Date"].iloc[0]
-
-        print("<========= v Original Date v ========>")
-        print(self.original_date)
-
-        self.next_day = self.original_date + timedelta(days=2)
-
-        print("<========= v New Date v ========>")
+        print("<========= v New Record v ========>")
         print(self.next_day)
-        #                                                          start is inclusive;   end is exclusive.
-        #                                                                     |             |
-        self.position_time_series = yf.Ticker(self.symbol).history(start=self.original_date, end=self.next_day,
-                                                                   prepost=True).reset_index()
 
-        print("<========= v Position Series v ========>")
-        print(self.position_time_series)
+    def calc_date(self):
+        print("<========= v Original Record v ========>")
+        print(self.initial_record)
+        self.index = self.index + 1
+        self.next_day = self.history.iloc[self.index]
