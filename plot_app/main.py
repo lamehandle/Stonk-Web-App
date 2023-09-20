@@ -48,10 +48,10 @@ print('<======== Remaining Bank Amount: ========>')
 print('             $ ' + str(balance.bank_amt()))
 print("<========= Advancing the Sim 1 Day ========>")
 # advance the loop 1 day
-position.advance_time()
+position.advance_record()
 
 # plot = Plot(position) todo refactor plot to be in line with refactored Position class
 # # on each round of the simulation add or subtract funds based on the bets.
-
+position.advance_record()
 # todo Plot ticker history
 # todo plot take profit/stop loss on top of plot to show where those amounts land.
