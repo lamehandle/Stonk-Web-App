@@ -26,9 +26,11 @@ class Position:
 
     def retrieve_history(self):
         self.history = yf.Ticker(self.symbol).history(self.period).reset_index()
+        print("<========= v Company History v ========>")
+        print(self.history)
 
     def retrieve_initial_day(self):
-        self.initial_record = self.history.iloc[self.index]  # todo confirm that this is the frst row of the history dataframe
+        self.initial_record = self.history.iloc[self.index]
 
     def take_profit(self, profit_value):
         if profit_value > 0.0:
@@ -38,13 +40,9 @@ class Position:
         if loss_value >= 0.0:
             self.stop_loss_value = loss_value
 
-    def advance_time(self):
-        print("<========= v History v ========>")
-        print(self.history)
-        # todo walk down the history dataframe one element at a time.
+    def advance_record(self):
         if self.initial_record is not None:
             self.calc_date()
-
         print("<========= v New Record v ========>")
         print(self.next_day)
 
