@@ -38,19 +38,19 @@ print("<========Sim Start=========>")
 print('<======== Total Bank Amount: ========>$')
 print('             $ ' + str(balance.bank_amt()))
 print("<=================>")
-# print(position.history)
-# print("<=================>")
-balance.purchase_stocks(position.history)
 
+balance.purchase_stocks(position.history)
 print("Total units purchased: " + str(balance.stock_units) + " units of " + str(position.symbol))
 print("<=================>")
+
 print('<======== Remaining Bank Amount: ========>')
 print('             $ ' + str(balance.bank_amt()))
 print("<========= Advancing the Sim 1 Day ========>")
 # advance the loop 1 day
 position.advance_record()
 
-# plot = Plot(position) todo refactor plot to be in line with refactored Position class
+plot = Plot(position)
+plot.plot_history()
 # # on each round of the simulation add or subtract funds based on the bets.
 position.advance_record()
 # todo Plot ticker history
