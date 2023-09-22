@@ -36,12 +36,6 @@ class Plot:
             fig.update_layout(xaxis_rangeslider_visible=False)
             fig.add_scatter()
 
-            # fig.add_candlestick(x=self.pos['Date'],
-            #                     open=self.pos['Open'],
-            #                     high=self.pos['High'],
-            #                     low=self.pos['Low'],
-            #                     close=self.pos['Close'])
-            # fig.add_trace()
             return fig.show()
         else:
             return print("<======== No data! =========>")

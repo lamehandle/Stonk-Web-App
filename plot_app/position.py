@@ -31,7 +31,8 @@ class Position:
 
     def retrieve_initial_day(self):
         self.initial_record = self.history.iloc[self.index]
-
+        print("<========= v Original Record v ========>")
+        print(self.initial_record)
     def take_profit(self, profit_value):
         if profit_value > 0.0:
             self.take_profit_value = profit_value
@@ -47,7 +48,5 @@ class Position:
         print(self.next_day)
 
     def calc_date(self):
-        print("<========= v Original Record v ========>")
-        print(self.initial_record)
         self.index = self.index + 1
         self.next_day = self.history.iloc[self.index]

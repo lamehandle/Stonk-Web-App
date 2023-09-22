@@ -45,13 +45,18 @@ print("<=================>")
 
 print('<======== Remaining Bank Amount: ========>')
 print('             $ ' + str(balance.bank_amt()))
-print("<========= Advancing the Sim 1 Day ========>")
+print("<========= Advancing the Sim ========>")
 # advance the loop 1 day
 position.advance_record()
 
+print("<========= Plotting the Sim ========>")
 plot = Plot(position)
 plot.plot_history()
+
 # # on each round of the simulation add or subtract funds based on the bets.
 position.advance_record()
+position.advance_record()
+position.advance_record()
+
 # todo Plot ticker history
 # todo plot take profit/stop loss on top of plot to show where those amounts land.
