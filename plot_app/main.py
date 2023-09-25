@@ -58,5 +58,4 @@ position.advance_record()
 position.advance_record()
 position.advance_record()
 
-# todo Plot ticker history
 # todo plot take profit/stop loss on top of plot to show where those amounts land.

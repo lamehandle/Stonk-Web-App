@@ -10,7 +10,8 @@ class Position:
 
     index = 0
     initial_record = None
-    prev_date= None
+    prev_date = None
+    scatter_list = []
     next_day = None
 
     take_profit_value = 0.0
@@ -43,6 +44,8 @@ class Position:
 
     def advance_record(self):
         if self.initial_record is not None:
+            self.prev_date = self.initial_record
+            self.scatter_list.append(self.prev_date)
             self.calc_date()
         print("<========= v New Record v ========>")
         print(self.next_day)

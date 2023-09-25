@@ -14,6 +14,7 @@ class Plot:
     close = None
     low = None
     high = None
+    fig = None
 
     def __init__(self, position):
         self.hist = position.history
@@ -27,18 +28,31 @@ class Plot:
     def plot_history(self):
         if self.hist is not None:
             print("<======== data! =========>")
-            fig = go.Figure(data=[go.Candlestick(x=self.hist['Date'],
-                                                 open=self.open,
-                                                 high=self.high,
-                                                 low=self.low,
-                                                 close=self.close)])
+            self.fig = go.Figure(data=[go.Candlestick(x=self.hist['Date'],
+                                                      open=self.open,
+                                                      high=self.high,
+                                                      low=self.low,
+                                                      close=self.close)])
 
-            fig.update_layout(xaxis_rangeslider_visible=False)
-            fig.add_scatter()
+            self.fig.update_layout(xaxis_rangeslider_visible=False)
+            self.fig.add_scatter()
 
-            return fig.show()
+            return self.fig.show()
         else:
             return print("<======== No data! =========>")
+
+    def update_position(self):
+        if self.fig is not None:
+            if self.pos is not None:
+                print("<======== Position data! =========>")
+                self.fig.add_trace(go.Scatter(self.pos, x=self.pos["Date"], y=self.pos["Open"]))
+                self.fig.update_traces(marker=dict(size=12,
+                                                   line=dict(width=2,
+                                                             color="DarkSlateGrey")),
+                                       selector=dict(mode="markers"))
+                self.fig.show()
+        else:
+            return print("<======== No Position data! =========>")
 
             # Low level example of a figure which is a dict
             # fig = dict({
@@ -52,16 +66,3 @@ class Plot:
             # import plotly.io as pio
             #
             # pio.show(fig)
-
-    def plot_position(self):
-        if self.pos is not None:
-            print("<======== Position data! =========>")
-            fig = go.Figure(data=[go.Candlestick(x=self.pos['Date'],
-                                                 open=self.pos['Open'],
-                                                 high=self.pos['High'],
-                                                 low=self.pos['Low'],
-                                                 close=self.pos['Close'])])
-            fig.update_layout(xaxis_rangeslider_visible=False)
-            return fig.show()
-        else:
-            return print("<======== No Position data! =========>")
