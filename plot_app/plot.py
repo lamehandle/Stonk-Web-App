@@ -41,28 +41,13 @@ class Plot:
         else:
             return print("<======== No data! =========>")
 
-    def update_position(self):
+    def update_position(self, position):
+        data = position.history[0, position.index]
         if self.fig is not None:
             if self.pos is not None:
                 print("<======== Position data! =========>")
-                self.fig.add_trace(go.Scatter(self.pos, x=self.pos["Date"], y=self.pos["Open"]))
-                self.fig.update_traces(marker=dict(size=12,
-                                                   line=dict(width=2,
-                                                             color="DarkSlateGrey")),
-                                       selector=dict(mode="markers"))
-                self.fig.show()
+                self.fig.add_trace(go.Scatter(self.pos, x=data["Date"], y=data["Open"]))
+
+            self.fig.show()
         else:
             return print("<======== No Position data! =========>")
-
-            # Low level example of a figure which is a dict
-            # fig = dict({
-            #     "data": [{"type": "bar",
-            #               "x": [1, 2, 3],
-            #               "y": [1, 3, 2]}],
-            #     "layout": {"title": {"text": "A Figure Specified By Python Dictionary"}}
-            # })
-            #
-            # # To display the figure defined by this dict, use the low-level plotly.io.show function
-            # import plotly.io as pio
-            #
-            # pio.show(fig)
