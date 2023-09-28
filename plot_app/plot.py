@@ -8,9 +8,10 @@ from position import Position as pos
 class Plot:
     # Plot
     fig = None
-
+    index = None
+    
     def __init__(self, position):
-        pass
+        self.index = position.index
 
     def plot_history(self, position):
         if position is not None:
