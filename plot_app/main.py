@@ -51,11 +51,11 @@ position.advance_record()
 
 print("<========= Plotting the Sim ========>")
 plot = Plot(position)
-plot.plot_history()
+plot.plot_history(position)
 
 # # on each round of the simulation add or subtract funds based on the bets.
 position.advance_record()
 position.advance_record()
 position.advance_record()
-
+plot.update_position(position)
 # todo plot take profit/stop loss on top of plot to show where those amounts land.

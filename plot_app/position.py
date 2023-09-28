@@ -11,7 +11,6 @@ class Position:
     index = 0
     initial_record = None
     prev_date = None
-    scatter_list = []
     next_day = None
 
     take_profit_value = 0.0
@@ -34,6 +33,7 @@ class Position:
         self.initial_record = self.history.iloc[self.index]
         print("<========= v Original Record v ========>")
         print(self.initial_record)
+
     def take_profit(self, profit_value):
         if profit_value > 0.0:
             self.take_profit_value = profit_value
@@ -44,8 +44,7 @@ class Position:
 
     def advance_record(self):
         if self.initial_record is not None:
-            self.prev_date = self.initial_record
-            self.scatter_list.append(self.prev_date)
+            # self.prev_date = self.initial_record
             self.calc_date()
         print("<========= v New Record v ========>")
         print(self.next_day)
