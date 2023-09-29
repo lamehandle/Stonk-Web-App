@@ -42,7 +42,11 @@ class Position:
             return "Take Profit Order must be greater than 0."
 
     def value_match(self, value):
-        if value =
+        if value != self.history().iloc['Close']:
+            return False
+        else:
+            return True
+
             # todo implement take profit/profit loss match logic
 
     def stop_loss(self, loss_value):
