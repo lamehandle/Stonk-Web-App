@@ -31,6 +31,11 @@ class Balance:
         else:
             self.errors = {"funds": "Not enough funds!"}
 
+    def value_held(self):
+        return self.stock_units * self.unit_cost
+
+    def cash_out(self):
+        pass
 
 
 

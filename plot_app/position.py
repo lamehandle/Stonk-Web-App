@@ -35,15 +35,20 @@ class Position:
         print(self.initial_record)
 
     def take_profit(self, balance):
-        if balance.unit_cost > 0.0:
+        if balance.unit_cost >= 0.0:
             self.take_profit_value = balance.unit_cost
-        #     todo implement take profit logic
+            # todo implement take profit match logic
         else:
             return "Take Profit Order must be greater than 0."
+
+    def value_match(self, value):
+        if value =
+            # todo implement take profit/profit loss match logic
 
     def stop_loss(self, loss_value):
         if loss_value >= 0.0:
             self.stop_loss_value = loss_value
+            # todo implement stop loss match logic
         else:
             return "Stop Loss Order must be 0 or greater."
 
