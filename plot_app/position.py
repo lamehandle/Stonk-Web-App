@@ -37,10 +37,14 @@ class Position:
     def take_profit(self, profit_value):
         if profit_value > 0.0:
             self.take_profit_value = profit_value
+        else:
+            return "Take Profit Order must be greater than 0."
 
     def stop_loss(self, loss_value):
         if loss_value >= 0.0:
             self.stop_loss_value = loss_value
+        else:
+            return "Stop Loss Order must be 0 or greater."
 
     def advance_record(self):
         if self.initial_record is not None:

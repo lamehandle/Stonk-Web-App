@@ -9,7 +9,7 @@ class Plot:
     # Plot
     fig = None
     index = None
-    
+
     def __init__(self, position):
         self.index = position.index
 
@@ -32,7 +32,9 @@ class Plot:
             if position.history is not None:
                 print("<======== Position data! =========>")
                 self.fig.add_trace(
-                    go.Scatter(x=position.history["Date"], y=position.history["Open"],))
+                    go.Scatter(x=position.history["Date"], y=position.history["Open"], mode="markers"))
+                self.fig.add_trace(
+                    go.Scatter(x=position.history["Date"], y=position.history["Open"]))
                 self.fig.show()
         else:
             return print("<======== No Position data! =========>")

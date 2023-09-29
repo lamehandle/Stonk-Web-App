@@ -58,5 +58,8 @@ position.advance_record()
 position.advance_record()
 position.advance_record()
 plot.update_position(position)
+position.advance_record()
+position.advance_record()
+plot.update_position(position)
 
 # todo plot take profit/stop loss on top of plot to show where those amounts land.
