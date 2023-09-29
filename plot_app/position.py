@@ -34,9 +34,10 @@ class Position:
         print("<========= v Original Record v ========>")
         print(self.initial_record)
 
-    def take_profit(self, profit_value):
-        if profit_value > 0.0:
-            self.take_profit_value = profit_value
+    def take_profit(self, balance):
+        if balance.unit_cost > 0.0:
+            self.take_profit_value = balance.unit_cost
+        #     todo implement take profit logic
         else:
             return "Take Profit Order must be greater than 0."
 
