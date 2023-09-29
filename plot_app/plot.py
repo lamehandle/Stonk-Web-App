@@ -28,6 +28,7 @@ class Plot:
             return print("<======== No data! =========>")
 
     def update_position(self, position):
+        self.plot_history(position)
         if self.fig is not None:
             if position.history is not None:
                 print("<======== Position data! =========>")

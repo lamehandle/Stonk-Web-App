@@ -51,7 +51,7 @@ position.advance_record()
 
 print("<========= Plotting the Sim ========>")
 plot = Plot(position)
-plot.plot_history(position)
+# plot.plot_history(position)
 
 # # on each round of the simulation add or subtract funds based on the bets.
 position.advance_record()
