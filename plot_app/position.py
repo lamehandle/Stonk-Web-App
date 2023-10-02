@@ -36,7 +36,8 @@ class Position:
 
     def take_profit(self, balance):
         if balance.unit_cost >= 0.0:
-            self.take_profit_value = balance.unit_cost
+            self.take_profit_value >= self.history.iloc[self.index]["Close"]
+            balance.cash_out(self)
             # todo implement take profit match logic
         else:
             return "Take Profit Order must be greater than 0."

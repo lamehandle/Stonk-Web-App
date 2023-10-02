@@ -34,8 +34,9 @@ class Balance:
     def value_held(self):
         return self.stock_units * self.unit_cost
 
-    def cash_out(self):
-        pass
+    def cash_out(self, position):
+        self.bank += self.stock_units * self.unit_cost
+        print(self.bank)
 
 
 

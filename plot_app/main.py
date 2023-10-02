@@ -26,10 +26,11 @@ data = {
 position = Position(data['symbol'])
 
 # print(position.position_series)
+
 # take profit order
-profit = position.take_profit(data["take_profit"])
+
 # # stop loss order
-stop_loss = position.stop_loss(data["stop_loss"])
+
 
 balance = Balance(data['bank'], data['invest_amt'])
 balance.invest(data['invest_amt'])

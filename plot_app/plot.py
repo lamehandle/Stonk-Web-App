@@ -36,6 +36,8 @@ class Plot:
                     go.Scatter(x=position.history["Date"], y=position.history["Open"], mode="markers"))
                 self.fig.add_trace(
                     go.Scatter(x=position.history["Date"], y=position.history["Open"]))
+                # self.fig.add_trace(
+                #     go.Scatter(x=position.history["Date"], y=position.take_profit_value, mode="markers"))
                 self.fig.show()
         else:
             return print("<======== No Position data! =========>")
