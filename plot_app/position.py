@@ -34,6 +34,9 @@ class Position:
         print("<========= v Original Record v ========>")
         print(self.initial_record)
 
+    def set_take_profit(self, value):
+        self.take_profit_value = value
+
     def take_profit(self, balance):
         if balance.unit_cost >= 0.0:
             self.take_profit_value >= self.history.iloc[self.index]["Close"]

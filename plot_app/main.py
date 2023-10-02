@@ -24,11 +24,10 @@ data = {
 # create a main loop
 # sim = Sim_Ctrl()
 position = Position(data['symbol'])
-
 # print(position.position_series)
 
 # take profit order
-
+position.set_take_profit(data["take_profit"])
 # # stop loss order
 
 
