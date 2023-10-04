@@ -39,22 +39,20 @@ class Position:
 
     def take_profit(self, balance):
         close_val = self.history.iloc[self.index]["Close"]
-        if balance.unit_cost >= 0.0:
-            self.take_profit_value >= close_val
-            balance.cash_out(self, close_val)
-
+        if balance.stock_units > 0.0:
+            if self.take_profit_value >= close_val:
+                balance.cash_out(self, close_val)
         else:
-            return "Take Profit Order must be greater than 0."
+            return "Take Profit Order must be $0.00 or greater."
 
-    #         # todo implement take profit/profit loss match logic
-
-    def stop_loss(self, loss_value):
+    def stop_loss(self, balance):
         close_val = self.history.iloc[self.index]["Close"]
-        if loss_value >= 0.0:
-            self.stop_loss_value = close_val
-            # todo implement stop loss match logic
-        else:
-            return "Stop Loss Order must be 0 or greater."
+        if balance.stock_units > 0.0:
+            if self.stop_loss_value <= close_val:
+                balance.cash_out(self, close_val)
+            else:
+                return "Stop Loss Order must be $0.00 or greater."
+            # todo implement take profit/profit loss match logic
 
     def advance_record(self):
         if self.initial_record is not None:
