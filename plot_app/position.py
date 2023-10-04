@@ -38,24 +38,20 @@ class Position:
         self.take_profit_value = value
 
     def take_profit(self, balance):
+        close_val = self.history.iloc[self.index]["Close"]
         if balance.unit_cost >= 0.0:
-            self.take_profit_value >= self.history.iloc[self.index]["Close"]
-            balance.cash_out(self)
-            # todo implement take profit match logic
+            self.take_profit_value >= close_val
+            balance.cash_out(self, close_val)
+
         else:
             return "Take Profit Order must be greater than 0."
 
-    def value_match(self, value):
-        if value != self.history().iloc['Close']:
-            return False
-        else:
-            return True
-
-            # todo implement take profit/profit loss match logic
+    #         # todo implement take profit/profit loss match logic
 
     def stop_loss(self, loss_value):
+        close_val = self.history.iloc[self.index]["Close"]
         if loss_value >= 0.0:
-            self.stop_loss_value = loss_value
+            self.stop_loss_value = close_val
             # todo implement stop loss match logic
         else:
             return "Stop Loss Order must be 0 or greater."

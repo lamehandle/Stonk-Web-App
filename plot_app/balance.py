@@ -34,9 +34,11 @@ class Balance:
     def value_held(self):
         return self.stock_units * self.unit_cost
 
-    def cash_out(self, position):
-        self.bank += self.stock_units * self.unit_cost
-        print(self.bank)
+    def cash_out(self, position, close_value):
+        self.bank = self.bank + (self.stock_units * close_value)
+        print('<======== Updated Bank Amount: ========>$')
+        print('             $ ' + str(self.bank_amt()))
+        print("<=================>")
 
 
 

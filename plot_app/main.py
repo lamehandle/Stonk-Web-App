@@ -26,8 +26,6 @@ data = {
 position = Position(data['symbol'])
 # print(position.position_series)
 
-# take profit order
-position.set_take_profit(data["take_profit"])
 # # stop loss order
 
 
@@ -61,5 +59,9 @@ plot.update_position(position)
 position.advance_record()
 position.advance_record()
 plot.update_position(position)
+
+# take profit order
+position.set_take_profit(data["take_profit"])
+position.take_profit(balance)
 
 # todo plot take profit/stop loss on top of plot to show where those amounts land.
