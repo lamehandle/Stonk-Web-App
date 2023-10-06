@@ -16,7 +16,7 @@ data = {
     "bank": 10000.00,
     "invest_amt": 2000.00,
     "take_profit": 200.00,
-    "stop_loss": 100.00,
+    "stop_loss": 50.00,
 
 }
 

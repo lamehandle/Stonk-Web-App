@@ -13,8 +13,8 @@ class Position:
     prev_date = None
     next_day = None
 
-    take_profit_value = 0.0
-    stop_loss_value = 0.0
+    take_profit_value = None
+    stop_loss_value = None
 
     def __init__(self, symbol):
         self.symbol = symbol
@@ -66,3 +66,11 @@ class Position:
     def calc_date(self):
         self.index = self.index + 1
         self.next_day = self.history.iloc[self.index]
+
+    def match_records(self, match):
+
+        if self.history:
+            return self.history.where(self.history == match)
+        else:
+            return "No records to filter."
+#       todo create filtering logic
