@@ -36,12 +36,15 @@ class Plot:
                     go.Scatter(x=position.history["Date"], y=position.history["Open"], mode="markers"))
                 self.fig.add_trace(
                     go.Scatter(x=position.history["Date"], y=position.history["Open"]))
+
                 if position.stop_loss_value:
                     self.fig.add_trace(
-                        go.Scatter(x=position.history["Date"], y=position.stop_loss_value, mode="markers"))
+                        go.Scatter(x=position.history["Date"], y=position.stop_loss_value))
+                # todo refactor to provide the rows that match the value.
                 if position.take_profit_value:
                     self.fig.add_trace(
-                        go.Scatter(x=position.history["Date"], y=position.take_profit_value, mode="markers"))
+                        go.Scatter(x=position.history["Date"], y=position.take_profit_value))
+                # todo refactor to provide the rows that match the value.
                 self.fig.show()
         else:
             return print("<======== No Position data! =========>")

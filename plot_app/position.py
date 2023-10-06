@@ -45,6 +45,8 @@ class Position:
         else:
             return "Take Profit Order must be $0.00 or greater."
 
+    # todo refactor to provide the rows that match the value.
+
     def stop_loss(self, balance):
         close_val = self.history.iloc[self.index]["Close"]
         if balance.stock_units > 0.0:
@@ -52,7 +54,7 @@ class Position:
                 balance.cash_out(self, close_val)
             else:
                 return "Stop Loss Order must be $0.00 or greater."
-            # todo implement take profit/profit loss match logic
+    # todo refactor to provide the rows that match the value.
 
     def advance_record(self):
         if self.initial_record is not None:

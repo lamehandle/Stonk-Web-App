@@ -63,5 +63,7 @@ plot.update_position(position)
 # take profit order
 position.set_take_profit(data["take_profit"])
 position.take_profit(balance)
+position.stop_loss(balance)
 
+plot.update_position(position)
 # todo plot take profit/stop loss on top of plot to show where those amounts land.
