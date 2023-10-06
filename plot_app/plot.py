@@ -39,11 +39,11 @@ class Plot:
 
                 if position.stop_loss_value:
                     self.fig.add_trace(
-                        go.Scatter(x=position.history["Date"], y=position.stop_loss_value))
+                        go.Scatter(x=position.history["Date"], y=[position.stop_loss_value]))
                 # todo refactor to provide the rows that match the value.
                 if position.take_profit_value:
                     self.fig.add_trace(
-                        go.Scatter(x=position.history["Date"], y=position.take_profit_value))
+                        go.Scatter(x=position.history["Date"], y=[position.take_profit_value]))
                 # todo refactor to provide the rows that match the value.
                 self.fig.show()
         else:
