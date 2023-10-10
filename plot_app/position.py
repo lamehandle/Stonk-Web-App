@@ -37,6 +37,9 @@ class Position:
     def set_take_profit(self, value):
         self.take_profit_value = value
 
+    def set_stop_loss(self, value):
+        self.stop_loss_value = value
+
     def take_profit(self, balance):
         close_val = self.history.iloc[self.index]["Close"]
         if balance.stock_units > 0.0:
@@ -52,6 +55,7 @@ class Position:
         if balance.stock_units > 0.0:
             if self.stop_loss_value <= close_val:
                 balance.cash_out(self, close_val)
+                return self.history[self.history <= close_val] # this is incorrect... probably
             else:
                 return "Stop Loss Order must be $0.00 or greater."
     # todo refactor to provide the rows that match the value.

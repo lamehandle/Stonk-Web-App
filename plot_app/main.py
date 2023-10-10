@@ -63,6 +63,8 @@ plot.update_position(position)
 # take profit order
 position.set_take_profit(data["take_profit"])
 position.take_profit(balance)
+
+position.set_stop_loss(data["stop_loss"])
 position.stop_loss(balance)
 
 plot.update_position(position)

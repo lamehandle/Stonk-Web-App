@@ -36,6 +36,7 @@ class Balance:
 
     def cash_out(self, position, close_value):
         self.bank = self.bank + (self.stock_units * close_value)
+
         print('<======== Updated Bank Amount: ========>$')
         print('             $ ' + str(self.bank_amt()))
         print("<=================>")
