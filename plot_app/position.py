@@ -55,7 +55,7 @@ class Position:
         if balance.stock_units > 0.0:
             if self.stop_loss_value <= close_val:
                 balance.cash_out(self, close_val)
-                return self.history[self.history <= close_val] # this is incorrect... probably
+                return self.history[self.history["Close"] <= close_val] 
             else:
                 return "Stop Loss Order must be $0.00 or greater."
     # todo refactor to provide the rows that match the value.
