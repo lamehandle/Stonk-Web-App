@@ -15,8 +15,8 @@ data = {
     "stock_units": 0,
     "bank": 10000.00,
     "invest_amt": 2000.00,
-    "take_profit": 200.00,
-    "stop_loss": 100.00,
+    "take_profit": 180.00,
+    "stop_loss": 166.00,
 
 }
 
@@ -24,12 +24,10 @@ data = {
 # create a main loop
 # sim = Sim_Ctrl()
 position = Position(data['symbol'])
-
 # print(position.position_series)
-# take profit order
-profit = position.take_profit(data["take_profit"])
+
 # # stop loss order
-stop_loss = position.stop_loss(data["stop_loss"])
+
 
 balance = Balance(data['bank'], data['invest_amt'])
 balance.invest(data['invest_amt'])
@@ -62,4 +60,12 @@ position.advance_record()
 position.advance_record()
 plot.update_position(position)
 
+# take profit order
+position.set_take_profit(data["take_profit"])
+position.take_profit(balance)
+
+position.set_stop_loss(data["stop_loss"])
+position.stop_loss(balance)
+
+plot.update_position(position)
 # todo plot take profit/stop loss on top of plot to show where those amounts land.
