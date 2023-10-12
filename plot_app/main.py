@@ -55,10 +55,10 @@ plot = Plot(position)
 position.advance_record()
 position.advance_record()
 position.advance_record()
-plot.update_position(position)
+# plot.update_position(position)
 position.advance_record()
 position.advance_record()
-plot.update_position(position)
+# plot.update_position(position)
 
 # take profit order
 position.set_take_profit(data["take_profit"])
@@ -68,4 +68,4 @@ position.set_stop_loss(data["stop_loss"])
 position.stop_loss(balance)
 
 plot.update_position(position)
-# todo plot take profit/stop loss on top of plot to show where those amounts land.
+

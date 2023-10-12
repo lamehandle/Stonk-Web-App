@@ -23,7 +23,7 @@ class Plot:
                                                       close=position.history['Close'])])
 
             self.fig.update_layout(xaxis_rangeslider_visible=False)
-            return self.fig.show()
+
         else:
             return print("<======== No data! =========>")
 
