@@ -69,4 +69,4 @@ position.stop_loss(balance)
 
 plot.update_position(position)
 
-# todo add persistant bank data to allow
+# todo add persistent bank data to allow
