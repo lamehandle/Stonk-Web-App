@@ -38,12 +38,33 @@ class Plot:
                     go.Scatter(x=position.history["Date"], y=position.history["Open"]))
 
                 if position.stop_loss_value:
-                    self.fig.add_hline(y=position.stop_loss_value, line_dash="dash", opacity=0.5, line_color="blue")
-                    # self.fig.add_trace(
-                    #     go.Scatter(x=position.history["Date"], y=[position.stop_loss_value]))
+                    self.fig.add_hline(y=position.stop_loss_value, line_dash="dash", opacity=0.5, line_color="blue",
+                                       annotation_text="Stop Loss Order",
+                                       annotation_position="top left",
+                                       annotation_font_size=18,
+                                       annotation_font_color="blue"
+                                       )
+
+                    self.fig.add_trace(
+                        go.Scatter(x=position.history["Date"],
+                                   y=[position.history[position.history["Close"] <= position.stop_loss_value]],
+                                   marker=dict(
+                                       color='LightSkyBlue',
+                                       size=120,
+                                       line=dict(
+                                           color='MediumPurple',
+                                           width=12
+                                       )
+                                   )))
                 # todo refactor to provide the rows that match the value.
+
                 if position.take_profit_value:
-                    self.fig.add_hline(y=position.take_profit_value, line_dash="dash", opacity=0.5, line_color="blue")
+                    self.fig.add_hline(y=position.take_profit_value, line_dash="dash", opacity=0.5, line_color="blue",
+                                       annotation_text="Take Profit Order",
+                                       annotation_position="top left",
+                                       annotation_font_size=18,
+                                       annotation_font_color="blue")
+
                     # self.fig.add_trace(
                     #     go.Scatter(x=position.history["Date"], y=[position.take_profit_value]))
                 # todo refactor to provide the rows that match the value.
