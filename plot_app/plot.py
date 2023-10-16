@@ -25,7 +25,8 @@ class Plot:
             self.fig.update_layout(xaxis_rangeslider_visible=False,
                                    title="Historical stock data for " + position.symbol,
                                    yaxis_title=position.symbol + "stock price",
-                                   xaxis_title="Date")
+                                   xaxis_title="Date",
+                                   text=position.symbol)
 
         else:
             return print("<======== No data! =========>")
