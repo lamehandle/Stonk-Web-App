@@ -51,6 +51,7 @@ class Position:
             if self.take_profit_value >= close_val:
                 balance.cash_out(self, close_val)
             self.take_prof = self.history[self.history["Close"].ge(self.take_profit_value) | self.history["Open"].ge(self.take_profit_value)]
+            print("Take profit rows")
             print(self.take_prof)
         else:
             return "Take Profit Order must be $0.00 or greater."
@@ -63,6 +64,7 @@ class Position:
             if self.stop_loss_value <= close_val:
                 balance.cash_out(self, close_val)
             self.stop_loss = self.history[self.history["Close"].le(self.stop_loss_value) | self.history["Open"].le(self.stop_loss_value)]
+            print("Stop Loss rows")
             print(self.stop_loss)
         else:
             return "Stop Loss Order must be $0.00 or greater."
