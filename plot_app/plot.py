@@ -20,13 +20,13 @@ class Plot:
                                                       open=position.history['Open'],
                                                       high=position.history['High'],
                                                       low=position.history['Low'],
-                                                      close=position.history['Close'])])
+                                                      close=position.history['Close'],
+                                                      name=position.symbol)])
 
             self.fig.update_layout(xaxis_rangeslider_visible=False,
                                    title="Historical stock data for " + position.symbol,
                                    yaxis_title=position.symbol + "stock price",
-                                   xaxis_title="Date",
-                                   text=position.symbol)
+                                   xaxis_title="Date")
 
         else:
             return print("<======== No data! =========>")
@@ -37,9 +37,15 @@ class Plot:
             if position.history is not None:
                 print("<======== Position data! =========>")
                 self.fig.add_trace(
-                    go.Scatter(x=position.history["Date"], y=position.history["Open"], mode="markers"))
+                    go.Scatter(x=position.history["Date"], y=position.history["Open"], mode="markers",
+                               name=position.symbol + " Open Position"))
                 self.fig.add_trace(
-                    go.Scatter(x=position.history["Date"], y=position.history["Open"]))
+                    go.Scatter(x=position.history["Date"], y=position.history["Open"],
+                               name=position.symbol + " Open Position"))
+
+                self.fig.add_trace(
+                    go.Scatter(x=position.history["Date"], y=position.history["Close"], mode="markers",
+                               name=position.symbol + " Close Position"))
 
                 if position.stop_loss_value:
                     self.fig.add_hline(y=position.stop_loss_value, line_dash="dash", opacity=0.5, line_color="blue",

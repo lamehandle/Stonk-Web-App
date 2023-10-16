@@ -69,4 +69,5 @@ position.stop_loss(balance)
 
 plot.update_position(position)
 
+# todo add makers showing points where Close values cross h-lines for take profit and stop loss
 # todo add persistent bank data to allow
