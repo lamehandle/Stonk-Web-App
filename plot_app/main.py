@@ -12,7 +12,7 @@ from plot import Plot
 data = {
     "symbol": 'AAPL',
     "symbol_list": {"Apple": 'AAPL', },
-    "stock_units": 0,
+    "stock_units": 0.0,
     "bank": 10000.00,
     "invest_amt": 2000.00,
     "take_profit": 180.00,
@@ -70,4 +70,5 @@ position.stop_loss(balance)
 plot.update_position(position)
 
 # todo add makers showing points where Close values cross h-lines for take profit and stop loss
+
 # todo add persistent bank data to allow

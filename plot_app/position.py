@@ -13,8 +13,13 @@ class Position:
     prev_date = None
     next_day = None
 
+    # values
     take_profit_value = None
     stop_loss_value = None
+
+    # dataframe slices
+    take_prof = None  # slice of self.history based on take_profit_value
+    stop_loss = None  # slice of self.history based on stop_loss_value
 
     def __init__(self, symbol):
         self.symbol = symbol
@@ -42,9 +47,11 @@ class Position:
 
     def take_profit(self, balance):
         close_val = self.history.iloc[self.index]["Close"]
-        if balance.stock_units > 0.0:
+        if balance.stock_units > 0:
             if self.take_profit_value >= close_val:
                 balance.cash_out(self, close_val)
+            self.take_prof = self.history[self.history["Close"].ge(self.take_profit_value) | self.history["Open"].ge(self.take_profit_value)]
+            print(self.take_prof)
         else:
             return "Take Profit Order must be $0.00 or greater."
 
@@ -55,9 +62,11 @@ class Position:
         if balance.stock_units > 0.0:
             if self.stop_loss_value <= close_val:
                 balance.cash_out(self, close_val)
-                return self.history[self.history["Close"] <= close_val]
-            else:
-                return "Stop Loss Order must be $0.00 or greater."
+            self.stop_loss = self.history[self.history["Close"].le(self.stop_loss_value) | self.history["Open"].le(self.stop_loss_value)]
+            print(self.stop_loss)
+        else:
+            return "Stop Loss Order must be $0.00 or greater."
+
     # todo refactor to provide the rows that match the value.
 
     def advance_record(self):
