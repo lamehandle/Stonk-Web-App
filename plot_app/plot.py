@@ -21,7 +21,7 @@ class Plot:
                                                       high=position.history['High'],
                                                       low=position.history['Low'],
                                                       close=position.history['Close'],
-                                                      name=position.symbol)])
+                                                      name=position.symbol + " Stock Price")])
 
             self.fig.update_layout(xaxis_rangeslider_visible=False,
                                    title="Historical stock data for " + position.symbol,
@@ -39,65 +39,41 @@ class Plot:
                 self.fig.add_trace(
                     go.Scatter(x=position.history["Date"], y=position.history["Open"], mode="lines+markers",
                                name=position.symbol + " Open Position"))
-                self.fig.add_trace(
-                    go.Scatter(x=position.history["Date"], y=position.history["Open"],
-                               name=position.symbol + " Open Position"))
 
                 self.fig.add_trace(
                     go.Scatter(x=position.history["Date"], y=position.history["Close"], mode="lines+markers",
                                name=position.symbol + " Close Position"))
 
-                self.fig.add_trace(
-                    go.Scatter(x=position.history["Date"], y=position.history["Close"],
-                               name=position.symbol + " Close Position"))
-
-            if position.stop_loss_value:
-                self.fig.add_hline(y=position.stop_loss_value, line_dash="dash", opacity=0.5, line_color="blue",
-                                   annotation_text="Stop Loss Order",
-                                   annotation_position="top left",
-                                   annotation_font_size=12,
-                                   annotation_font_color="blue"
-                                   )
-
                 # todo refactor to provide the rows that match the value.
-
-                self.fig.add_trace(
-                    go.Scatter(x=position.history["Date"],
-                               y=[position.stop_loss],
-                               name="Stop Loss on Close",
-                               text="Stop Loss",
-                               mode="markers+text",
-                               marker=dict(
-                                   color='darkred',
-                                   size=16,
-                                   line=dict(
-                                       color='purple',
-                                       width=3
-                                   )
-                               )))
-
-            if position.take_profit_value:
+            if position.take_prof_slice is not None:
                 self.fig.add_hline(y=position.take_profit_value, line_dash="dash", opacity=0.5, line_color="blue",
                                    annotation_text="Take Profit Order",
                                    annotation_position="top left",
                                    annotation_font_size=12,
                                    annotation_font_color="blue")
+
                 self.fig.add_trace(
                     go.Scatter(x=position.history["Date"],
-                               y=[position.take_prof],
-                               name="Stop Loss on Close",
+                               y=[position.take_prof_slice["Close"]],
+                               name="Take Profit (Close)",
+                               text="Take Profit",
+                               mode="markers+text",
+                               ))
+
+            # if position.stop_loss_slice is not None:
+                self.fig.add_hline(y=position.stop_loss_value, line_dash="dash", opacity=0.5, line_color="blue",
+                                   annotation_text="Stop Loss Order",
+                                   annotation_position="top left",
+                                   annotation_font_size=12,
+                                   annotation_font_color="blue")
+
+                self.fig.add_trace(
+                    go.Scatter(x=position.stop_loss_slice["Date"],
+                               y=[position.stop_loss_slice["Close"], position.stop_loss_slice["Open"]],
+                               name="Stop Loss (Close)",
                                text="Stop Loss",
                                mode="markers+text",
-                               marker=dict(
-                                   color='green',
-                                   size=16,
-                                   line=dict(
-                                       color='purple',
-                                       width=3
-                                   )
-                               )))
-
-                # todo refactor to provide the rows that match the value.
+                               ))
                 self.fig.show()
         else:
             return print("<======== No Position data! =========>")

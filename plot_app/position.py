@@ -18,8 +18,8 @@ class Position:
     stop_loss_value = None
 
     # dataframe slices
-    take_prof = None  # slice of self.history based on take_profit_value
-    stop_loss = None  # slice of self.history based on stop_loss_value
+    take_prof_slice = None  # slice of self.history based on take_profit_value
+    stop_loss_slice = None  # slice of self.history based on stop_loss_value
 
     def __init__(self, symbol):
         self.symbol = symbol
@@ -48,28 +48,24 @@ class Position:
     def take_profit(self, balance):
         close_val = self.history.iloc[self.index]["Close"]
         if balance.stock_units > 0:
-            if self.take_profit_value >= close_val:
+            if self.take_profit_value:
                 balance.cash_out(self, close_val)
-            self.take_prof = self.history[self.history["Close"].ge(self.take_profit_value) | self.history["Open"].ge(self.take_profit_value)]
-            print("Take profit rows")
-            print(self.take_prof)
+                self.take_prof_slice = self.history[self.history["Close"].ge(self.take_profit_value) | self.history["Open"].ge(self.take_profit_value)]
+                print("Take profit rows")
+                print(self.take_prof_slice)
         else:
             return "Take Profit Order must be $0.00 or greater."
-
-    # todo refactor to provide the rows that match the value.
 
     def stop_loss(self, balance):
         close_val = self.history.iloc[self.index]["Close"]
         if balance.stock_units > 0.0:
             if self.stop_loss_value <= close_val:
                 balance.cash_out(self, close_val)
-            self.stop_loss = self.history[self.history["Close"].le(self.stop_loss_value) | self.history["Open"].le(self.stop_loss_value)]
+            self.stop_loss_slice = self.history[self.history["Close"].le(self.stop_loss_value) | self.history["Open"].le(self.stop_loss_value)]
             print("Stop Loss rows")
-            print(self.stop_loss)
+            print(self.stop_loss_slice)
         else:
             return "Stop Loss Order must be $0.00 or greater."
-
-    # todo refactor to provide the rows that match the value.
 
     def advance_record(self):
         if self.initial_record is not None:

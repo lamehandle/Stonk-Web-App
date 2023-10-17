@@ -16,7 +16,7 @@ data = {
     "bank": 10000.00,
     "invest_amt": 2000.00,
     "take_profit": 180.00,
-    "stop_loss": 166.00,
+    "stop_loss": 170.00,
 
 }
 
@@ -68,7 +68,7 @@ position.set_stop_loss(data["stop_loss"])
 position.stop_loss(balance)
 
 plot.update_position(position)
-
+plot.update_position(position)
 # todo add makers showing points where Close values cross h-lines for take profit and stop loss
 
 # todo add persistent bank data to allow
