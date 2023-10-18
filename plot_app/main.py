@@ -71,4 +71,6 @@ plot.update_position(position)
 plot.update_position(position)
 # todo add makers showing points where Close values cross h-lines for take profit and stop loss
 
+# position.take_prof_slice.info()
+# position.stop_loss_slice.info()
 # todo add persistent bank data to allow

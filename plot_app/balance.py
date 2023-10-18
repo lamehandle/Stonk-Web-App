@@ -39,7 +39,7 @@ class Balance:
 
         print('<======== Updated Bank Amount: ========>$')
         print('             $ ' + str(self.bank_amt()))
-        print("<=================>")
+        print("             <=================>")
 
 
 

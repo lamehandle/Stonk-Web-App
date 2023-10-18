@@ -50,7 +50,7 @@ class Position:
         if balance.stock_units > 0:
             if self.take_profit_value:
                 balance.cash_out(self, close_val)
-                self.take_prof_slice = self.history[self.history["Close"].ge(self.take_profit_value) | self.history["Open"].ge(self.take_profit_value)]
+                self.take_prof_slice = self.history[self.history["Close"].ge(self.take_profit_value)]
                 print("Take profit rows")
                 print(self.take_prof_slice)
         else:
@@ -61,7 +61,7 @@ class Position:
         if balance.stock_units > 0.0:
             if self.stop_loss_value <= close_val:
                 balance.cash_out(self, close_val)
-            self.stop_loss_slice = self.history[self.history["Close"].le(self.stop_loss_value) | self.history["Open"].le(self.stop_loss_value)]
+            self.stop_loss_slice = self.history[self.history["Close"].le(self.stop_loss_value)]
             print("Stop Loss rows")
             print(self.stop_loss_slice)
         else:
@@ -84,4 +84,3 @@ class Position:
             return self.history.where(self.history == match)
         else:
             return "No records to filter."
-#       todo create filtering logic

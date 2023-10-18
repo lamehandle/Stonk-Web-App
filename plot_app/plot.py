@@ -44,7 +44,6 @@ class Plot:
                     go.Scatter(x=position.history["Date"], y=position.history["Close"], mode="lines+markers",
                                name=position.symbol + " Close Position"))
 
-                # todo refactor to provide the rows that match the value.
             if position.take_prof_slice is not None:
                 self.fig.add_hline(y=position.take_profit_value, line_dash="dash", opacity=0.5, line_color="blue",
                                    annotation_text="Take Profit Order",
@@ -53,11 +52,16 @@ class Plot:
                                    annotation_font_color="blue")
 
                 self.fig.add_trace(
-                    go.Scatter(x=position.history["Date"],
-                               y=[position.take_prof_slice["Close"]],
+                    go.Scatter(x=position.take_prof_slice["Date"],
+                               y=position.take_prof_slice["Close"],
                                name="Take Profit (Close)",
                                text="Take Profit",
                                mode="markers+text",
+                               marker=dict(
+                                   color="orange",
+                                   size=10,
+                                   symbol="diamond-dot",
+                                )
                                ))
 
             # if position.stop_loss_slice is not None:
@@ -69,10 +73,15 @@ class Plot:
 
                 self.fig.add_trace(
                     go.Scatter(x=position.stop_loss_slice["Date"],
-                               y=[position.stop_loss_slice["Close"]],
+                               y=position.stop_loss_slice["Close"],
                                name="Stop Loss (Close)",
                                text="Stop Loss",
                                mode="markers+text",
+                               marker=dict(
+                                   color="blue",
+                                   size=10,
+                                   symbol="diamond-dot",
+                               )
                                ))
                 self.fig.show()
         else:
