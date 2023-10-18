@@ -69,7 +69,7 @@ class Plot:
 
                 self.fig.add_trace(
                     go.Scatter(x=position.stop_loss_slice["Date"],
-                               y=[position.stop_loss_slice["Close"], position.stop_loss_slice["Open"]],
+                               y=[position.stop_loss_slice["Close"]],
                                name="Stop Loss (Close)",
                                text="Stop Loss",
                                mode="markers+text",
