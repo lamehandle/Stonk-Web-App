@@ -3,7 +3,8 @@ import plotly.express as px
 import pandas as pd
 import datetime as datetime
 from position import Position as pos
-
+import os
+import kaleido
 
 class Plot:
     # Plot
@@ -83,6 +84,16 @@ class Plot:
                                    symbol="diamond-dot",
                                )
                                ))
+
+                if not os.path.exists("plot_app/charts/" + position.symbol):
+                    os.mkdir("plot_app/charts/" + position.symbol)
+
+                now = datetime.datetime.now().strftime("%m.%d.%Y %H.%M.%S")
+                image_name = position.symbol + now
+                self.fig.write_image("plot_app/charts/" + position.symbol + "/" + image_name + ".jpeg")
+
+                print("saved image '" + image_name + "' successfully!")
                 self.fig.show()
+
         else:
             return print("<======== No Position data! =========>")

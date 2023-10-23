@@ -6,7 +6,11 @@ import plotly.graph_objects as go
 
 def index(request):
     form = stock_form()
-    return render(request, 'plot/index.html', {'form': form})  #
+    return render(request, 'plot/index.html', {'form': form})
+
+
+def plot_chart(request):
+    return render(request, 'plot/chart_view.html', {})
 
 
 def about(request):

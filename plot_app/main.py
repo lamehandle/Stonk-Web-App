@@ -67,7 +67,7 @@ position.take_profit(balance)
 position.set_stop_loss(data["stop_loss"])
 position.stop_loss(balance)
 
-plot.update_position(position)
+
 plot.update_position(position)
 
 # todo add persistent bank data to allow
