@@ -8,23 +8,18 @@ def get_symbols_from_csv():
     if file_path:
         # consume csv/excel and generate a dataframe
         comp_raw = pd.read_csv(file_path)
-        print(comp_raw)
+        series = comp_raw[['Symbol', 'Security Name']]
+        # print(series)
+        symbol_tuples = list(zip(series['Symbol'], series['Security Name']))
+        # print(symbol_tuples)
+        output = "stock_symbols.txt"
+        with open(output, "w") as file:
+            for row in symbol_tuples:
+                line = f"({row[0]}, {row[1]}),\n"
+                file.write(line)
+            file.close()
 
-        comp_filter = comp_raw.itertuples(name=None)
-
-        comp_filter = comp_raw.to_string(columns=['Symbol', 'Security Name'],
-                                         # formatters={
-                                         #     'Symbol': '('.format,
-                                         #     'Security Name': ')'.format
-                                         # },
-                                         justify="left",  header=False, index=False)
-        print(comp_filter)
-        new_file = open("stock_symbols.txt", "w")
-        print(comp_filter)
-        new_file.write(comp_filter)
-        new_file.close()
-        f = open("All_Stocks.txt", "w")
-        # return comp_filter
+        return symbol_tuples
     else:
         print("File not found")
 
