@@ -3,6 +3,7 @@ from django import forms
 
 
 class stock_form(forms.Form):
+    # replace with stock_symbols.txt file
     companies = [
         ('Enter a Stock', 'Select a Stock'),
         ('CADUSD=X', 'USD / CAD'),

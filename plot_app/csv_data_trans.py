@@ -12,7 +12,7 @@ def get_symbols_from_csv():
         # print(series)
         symbol_tuples = list(zip(series['Symbol'], series['Security Name']))
         # print(symbol_tuples)
-        output = "stock_symbols.txt"
+        output = "./plot_app/stock_symbols.txt"
         with open(output, "w") as file:
             for row in symbol_tuples:
                 line = f"({row[0]}, {row[1]}),\n"
@@ -22,5 +22,6 @@ def get_symbols_from_csv():
         return symbol_tuples
     else:
         print("File not found")
+
 
 get_symbols_from_csv()
