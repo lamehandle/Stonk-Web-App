@@ -23,5 +23,4 @@ def get_symbols_from_csv():
     else:
         print("File not found")
 
-
 get_symbols_from_csv()
