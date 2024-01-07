@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Stonk Trainer</title>
+</head>
+    <body><div>
+            <h1>Stonk Trainer</h1>
+        </div>
+        <div>
+            <p>"Hello, world. You're at the test index."</p>
+            <form method="post" action="{% '/plot' %}">
+                {% csrf_token %}
+                {{ form.stock_form }}
+        <button type="submit">Submit</button>
+    </form>
+        </div>
+    <div id="plot_div">
+<!--  Container for plot output      -->
+        {{ plot_div | safe }}
+    </div>
+    </body>
+</html>

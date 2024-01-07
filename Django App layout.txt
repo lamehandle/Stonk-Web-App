@@ -1,0 +1,10 @@
+Django App layout
+
+*Top level container "Stock Trainer"
+*	virtual environment folder "env" 
+*		Module/App name "web_plot_app"
+*			App logic files
+*
+*
+*
+*
